@@ -1,0 +1,40 @@
+<form class="example-form">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>First name</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 10px;">
+    <mat-form-field >
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      @if (email.invalid) {
+        <mat-error>{{getErrorMessage()}}</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <mat-checkbox formControlName="">I want to receive inspiration, marketing promotions and updates via email.</mat-checkbox></form>
+

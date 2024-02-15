@@ -1,0 +1,66 @@
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1a1b1e;
+    margin: 0;
+  }
+  
+  header p {
+    text-align: center;
+    color: #a39191;
+    margin: 0;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo {
+    object-fit: contain;
+    margin-right: 1rem;
+    width: 11rem;
+    height: 11rem;
+    cursor: pointer;
+  }
+  
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  
+  .logo.devUnity {
+    animation: logo-spin infinite 20s linear;
+  }
+  
+  .logo.devUnity:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .logo.devUnity {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+  

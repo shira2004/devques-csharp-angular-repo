@@ -1,0 +1,21 @@
+<div class="mainContainer">
+    <div class="container">
+      <div class="section1">
+        <h2>{{ title }}</h2>
+        <p class="paragraph">{{ description }}</p>
+        <button class="btnDark" (click)="onClick()" [style]="customStyle">
+          {{ buttonText }}
+          <div class="icon">
+          </div>
+        </button>
+      </div>
+      <div class="img">
+        <img
+          src="{{ imageSrc }}"
+          alt="team"
+          style="width: 35vw; padding: 0 20px 0 20px; border: 2px solid #ccc; border-radius: 8px;"
+        />
+      </div>
+    </div>
+  </div>
+  
