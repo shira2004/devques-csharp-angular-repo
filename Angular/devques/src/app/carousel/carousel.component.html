@@ -1,0 +1,21 @@
+<div class="carousel">
+      <div class="inner" [style.transform]="'translateX(' + -activeIndex * 100 + '%)'">
+        <app-carousel-item *ngFor="let item of items" [item]="item" ></app-carousel-item>
+      </div>
+
+      <div class="carousel-buttons">
+        <button class="button-arrow" (click)="handlePrev()">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </button>
+        <div class="indicators">
+          <button class="indicator-buttons" *ngFor="let item of items; let i = index"
+            (click)="handleIndicatorClick(i)">
+            <span class="material-symbols-outlined" [class.indicator-symbol-active]="i === activeIndex"
+              [class.indicator-symbol]="i !== activeIndex">radio_button_checked</span>
+          </button>
+        </div>
+        <button class="button-arrow" (click)="handleNext()">
+          <span class="material-symbols-outlined">arrow_forward_ios</span>
+        </button>
+      </div>
+    </div>
