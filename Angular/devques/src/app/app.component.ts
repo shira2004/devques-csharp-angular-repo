@@ -3,7 +3,7 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TopBarComponent } from "./top-bar/top-bar.component";
 import { FooterComponent } from "./footer/footer.component";
-import { LogInComponent } from './log-in/log-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { HeaderComponent } from './header/header.component';
 
 @Component({
@@ -15,7 +15,7 @@ import { HeaderComponent } from './header/header.component';
     MatSlideToggleModule, 
     TopBarComponent, FooterComponent, 
     RouterModule, 
-    LogInComponent,
+    SignUpComponent,
     HeaderComponent]
 })
 export class AppComponent {

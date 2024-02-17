@@ -1,1 +1,48 @@
-<p>sign-up works!</p>
+<form class="example-form" [formGroup]="SignUpForm">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field style="width:190px;">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field style="width: 190px; padding-left: 10px;">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 10px">
+    <mat-form-field style="width:390px;">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email"
+        required>
+      <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <mat-form-field style="width: 390px;">
+      <mat-label>Enter your password</mat-label>
+      <input matInput formControlName="password"
+        [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <mat-checkbox formControlName="receiveUpdates" style="margin-bottom: 10px;">I
+    want to receive inspiration, marketing promotions,<br /> and updates via
+    email.</mat-checkbox>
+  <!-- <button type="button" (click)="submit()">Submit</button> -->
+  <br />
+  <button mat-raised-button class="submit" (click)="submit()">Sign Up</button>
+
+ <!-- <li routerLink ="/signUp" routerLinkActive ="active"><a>Already have an account? Sign in </a></li> -->
+</form>
