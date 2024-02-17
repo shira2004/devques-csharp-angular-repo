@@ -3,14 +3,18 @@
     <app-left-section [title]="'Join Our Tech Community'"
                       [description]="'Connect with tech enthusiasts by registering today. Unlock the power to ask questions, share insights, and learn together.'"
                       [imageSrc]="'../../assets/pic/join.svg'"
-                      [buttonText]="'sign-in'">
+                      [buttonText]="'sign-in'"
+                      (sectionClicked)="onJoinSectionClick()"
+                      >
     </app-left-section>
   </div>
   <div style="padding-top: 200px">
     <app-right-section [title]="'Curiosity Unleashed'"
                       [description]="'Pose your burning tech questions. Contribute to our collective knowledge and engage in insightful discussions by adding your own queries.'"
                       [imageSrc]="'../../assets/pic/undraw_questions_re_1fy7 (2).svg'"
-                      [buttonText]="'start'">
+                      [buttonText]="'start'"
+                      (sectionClicked)="onStartSectionClick()"
+                      >
                       
     </app-right-section>
    
@@ -18,13 +22,18 @@
   <div style="padding-top: 200px">
     <app-left-section [title]="'Share Your Expertise'"
                       [description]="'Elevate the community by providing answers. Share your expertise, help fellow members, and be part of a collaborative learning experience.'"
-                      [imageSrc]="'../../assets/pic/Together.svg'">
+                      [imageSrc]="'../../assets/pic/Together.svg'"
+                      [buttonText]="'add your question'"
+                      (sectionClicked)="onAddQuesSectionClick()">
+                      
     </app-left-section>
   </div>
   <div style="padding-top: 200px">
     <app-right-section [title]="'Our Mission & Vision'"
                       [description]="'Discover the story behind our platform. Learn about our mission to create a supportive space for tech talent to learn, grow, and succeed.'"
-                      [imageSrc]="'../../assets/pic/Guidance.svg'">
+                      [imageSrc]="'../../assets/pic/Guidance.svg'"
+                      [buttonText]="'about'"
+                      (sectionClicked)="onAboutSectionClick()">
     </app-right-section>
   </div>
 
