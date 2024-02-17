@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-left-section',
@@ -14,8 +14,16 @@ export class LeftSectionComponent {
   @Input() imageSrc!: string;
   @Input() customStyle!: any;
 
+  @Output() sectionClicked = new EventEmitter<void>();
+
+  // onButtonClick() {
+  //   // Emit the click event to the parent component
+  //   this.sectionClicked.emit();
+  // }
+
   onClick(): void {
-    // Implement your click logic here
+    this.sectionClicked.emit();
   }
+
 
 }

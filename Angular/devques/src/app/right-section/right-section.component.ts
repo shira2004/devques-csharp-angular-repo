@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-right-section',
@@ -14,8 +14,11 @@ export class RightSectionComponent {
   @Input() imageSrc!: string;
   @Input() customStyle!: any;
 
+  @Output() sectionClicked = new EventEmitter<void>();
+
+
   onClick(): void {
-    // Implement your click logic here
+    this.sectionClicked.emit();
   }
 
 }
