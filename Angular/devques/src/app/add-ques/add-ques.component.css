@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  :host .mat-stepper-horizontal {
+    margin-top: 8px;
+   
+  }
+  
+  :host .mat-mdc-form-field {
+    margin-top: 16px;
+    
+  }

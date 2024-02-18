@@ -1,1 +1,66 @@
-<p>add-ques works!</p>
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button> -->
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field style="width:450px;">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="firstCtrl" required>
+            <mat-option *ngFor="let category of categoryList" [value]="category.CategoryId">
+              {{ category.CategoryName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Fill out ques content">
+      <form [formGroup]="secondFormGroup">
+
+        <mat-label>Select level </mat-label>
+        <mat-select style="width:120px; ">
+          <mat-option value="one">Junior</mat-option>
+          <mat-option value="two">Mid-level</mat-option>
+          <mat-option value="three">Senior</mat-option>
+        </mat-select>
+
+        <mat-label>Select company </mat-label>
+        <mat-select formControlName="secondCtrl" style="width:120px;">
+          <mat-option *ngFor="let category of categoryList" [value]="category.CategoryId">
+            {{ category.CategoryName }}
+          </mat-option>
+        </mat-select>
+        <br/>
+
+        <mat-form-field style="width:450px;">
+          <mat-label>question</mat-label>
+          <textarea matInput formControlName="secondCtrl" required minlength="20"  rows="5"></textarea>
+        </mat-form-field>
+
+        <br/>
+        <mat-form-field style="width:450px;">
+          <mat-label>your answer</mat-label>
+          <textarea matInput formControlName="secondCtrl" rows="3"></textarea>
+        </mat-form-field>
+
+
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
