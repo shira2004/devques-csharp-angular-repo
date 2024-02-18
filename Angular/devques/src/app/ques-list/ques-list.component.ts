@@ -39,7 +39,10 @@ export class QuesListComponent {
 
 
 public showDetails(ques: Question) {
-  this.router.navigate(["/ques/ques-details", ques.quesId]);
+  console.log('before routing');
+  console.log(ques.quesId);
+  
+  this.router.navigate(["/ques-details", ques.quesId]);
 }
 
 public filterQues() {
