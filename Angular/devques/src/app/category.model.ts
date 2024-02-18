@@ -1,4 +1,4 @@
 export class Category{
-    CategoryName!: string 
-    CategoryId!:number
+    categoryName!: string 
+    categoryId!:number
 }

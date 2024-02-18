@@ -38,6 +38,15 @@ export class AddQuesComponent implements OnInit{
 
   constructor(private _formBuilder: FormBuilder ,private _categoryService: CategoryService) {}
   ngOnInit(): void {
-    this.categoryList=this._categoryService.getAllCatogories();
+      
+     this._categoryService.getAllCategoriesByServer().subscribe({
+      next: (res) => {
+        this.categoryList = res;
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
 }
 }

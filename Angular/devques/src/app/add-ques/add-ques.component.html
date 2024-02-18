@@ -8,8 +8,8 @@
         <mat-form-field style="width:450px;">
           <mat-label>Category</mat-label>
           <mat-select formControlName="firstCtrl" required>
-            <mat-option *ngFor="let category of categoryList" [value]="category.CategoryId">
-              {{ category.CategoryName }}
+            <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
+              {{ category.categoryName }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -30,8 +30,8 @@
 
         <mat-label>Select company </mat-label>
         <mat-select formControlName="secondCtrl" style="width:120px;">
-          <mat-option *ngFor="let category of categoryList" [value]="category.CategoryId">
-            {{ category.CategoryName }}
+          <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
+            {{ category.categoryName }}
           </mat-option>
         </mat-select>
         <br/>
