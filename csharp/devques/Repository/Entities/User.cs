@@ -15,6 +15,7 @@ namespace Repository.Entities
             public string Email { get; set; }
             public string Password { get; set; }
             public virtual ICollection<Question> MarkedQuestions { get; set; } 
+            public virtual ICollection<Answer> Answers { get; set; }
             //public virtual ICollection<Answer> GivenAnswers { get; set; } 
         
     }

@@ -15,12 +15,16 @@ namespace Service
     public static  class ExtensionServices
     {
 
-        public static IServiceCollection AddServises(this IServiceCollection services)
+        public static IServiceCollection AddServises(this IServiceCollection Services)
         {
-            services.AddRepository();
-            services.AddScoped<IService<UserDto> , UserService>();
-            services.AddAutoMapper(typeof(MapperProfile));
-            return services;
+            Services.AddRepository();
+            Services.AddScoped<IService<UserDto>, UserService>();
+            Services.AddScoped<IService<CategoryDto>, CategoryService>();
+            Services.AddScoped<IService<CompanyDto>, CompanyService>();
+            Services.AddScoped<IService<AnswerDto>, AnswerService>();
+            Services.AddScoped<IService<QuestionDto>, QuestionService>();
+            Services.AddAutoMapper(typeof(MapperProfile));
+            return Services;
         } 
     }
 }

@@ -9,6 +9,7 @@ namespace Repository.Entities
     public class Answer
     {
         public int AnswerId { get; set; }
+        public DateTime date { get; set; }
         public  virtual Question question { get; set; }
         public virtual User User { get; set; }
         public string Content { get; set; }

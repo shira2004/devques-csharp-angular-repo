@@ -32,8 +32,6 @@ namespace Repository.Repositories
             this.context.save();
         }
 
-    
-
         public User Get(int id)
         {
             return this.context.user.FirstOrDefault(x => x.UserId == id);
@@ -41,7 +39,6 @@ namespace Repository.Repositories
 
         public List<User> GetAll()
         {
-
             return this.context.user.ToList(); 
         }
 

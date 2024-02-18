@@ -47,7 +47,7 @@ namespace Service.Services
 
         UserDto IService<UserDto>.Add(UserDto item)
         {
-            throw new NotImplementedException();
+         return mapper.Map<UserDto>( repository.Add(mapper.Map<User>(item)));
         }
     }
 }
