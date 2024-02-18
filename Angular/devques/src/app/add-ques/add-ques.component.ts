@@ -1,3 +1,4 @@
+import { QuestionService } from './../question.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -8,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import { Category } from '../category.model';
 import { CategoryService } from '../category.service';
+import { log } from 'console';
+import { Question } from '../question.model';
 
 
 @Component({
@@ -29,14 +32,16 @@ import { CategoryService } from '../category.service';
 export class AddQuesComponent implements OnInit{
   public categoryList!: Category[]
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
+    categoryCtrl: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required , Validators.minLength(20),Validators.maxLength(500)]
+    contentCtrl: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(500)]],
+    answerCtrl: ['', [Validators.minLength(10), Validators.maxLength(500)]]
   });
   isLinear = true;
+  ques! : Question
 
-  constructor(private _formBuilder: FormBuilder ,private _categoryService: CategoryService) {}
+  constructor(private _formBuilder: FormBuilder ,private _categoryService: CategoryService , private _questionService :QuestionService) {}
   ngOnInit(): void {
       
      this._categoryService.getAllCategoriesByServer().subscribe({
@@ -48,5 +53,29 @@ export class AddQuesComponent implements OnInit{
         console.log(err);
       }
     })
+}
+commit() {
+   this.ques = {
+    categoryId: parseInt(this.firstFormGroup.get('categoryCtrl')!.value || '0'),
+    content: this.secondFormGroup.get('contentCtrl')!.value || '',
+    userId: 1,
+    questionId:0,
+    companyId: 1
+  };
+
+ 
+
+  this._questionService.createQuestion(this.ques).subscribe({
+    next: (res) => {
+      console.log('good!!');
+      
+      console.log(res);
+    },
+    error: (err) => {
+      console.log('error');
+      
+      console.log(err);
+    }
+  });
 }
 }
