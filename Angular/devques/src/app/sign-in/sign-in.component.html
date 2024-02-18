@@ -1,0 +1,29 @@
+<form class="example-form" [formGroup]="SignInForm">
+   
+    <div style="margin-top: 10px">
+      <mat-form-field style="width:390px;">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" formControlName="email"
+          required>
+        <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+      </mat-form-field>
+    </div>
+  
+    <div style="margin-top: 10px;">
+      <mat-form-field style="width: 390px;">
+        <mat-label>Enter your password</mat-label>
+        <input matInput formControlName="password"
+          [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  
+    <br />
+    <button mat-raised-button class="submit" (click)="submit()">Sign In</button>
+  
+   <!-- <li routerLink ="/signIn" routerLinkActive ="active"><a>Don't have an account? Sign up </a></li> -->
+  </form>
+  <!-- <button (click)="signUp()">sign up </button> -->

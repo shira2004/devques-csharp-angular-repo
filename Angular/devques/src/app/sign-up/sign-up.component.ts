@@ -50,7 +50,7 @@ export class SignUpComponent implements OnInit {
  
   }
   signIn(){
-    this.router.navigate(['/ques']);
+    this.router.navigate(['/sign-in']);
   }
   
 
