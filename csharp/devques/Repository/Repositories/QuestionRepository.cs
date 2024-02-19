@@ -50,7 +50,7 @@ namespace Repository.Repositories
         {
             var ques = context.questions.FirstOrDefault(x => x.QuestionId == id);
             ques.Content = entity.Content;
-            ques.Company = entity.Company;
+            //ques.Company = entity.Company;
 
 
             this.context.save();

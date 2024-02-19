@@ -41,6 +41,7 @@ namespace DevQues.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE api/<CategoryController>/5

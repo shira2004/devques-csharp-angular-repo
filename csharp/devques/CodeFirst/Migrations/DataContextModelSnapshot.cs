@@ -63,11 +63,16 @@ namespace CodeFirst.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
+                    b.Property<int?>("CategoryId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
+
+                    b.HasIndex("CategoryId1");
 
                     b.ToTable("categories");
                 });
@@ -175,6 +180,13 @@ namespace CodeFirst.Migrations
                     b.Navigation("question");
                 });
 
+            modelBuilder.Entity("Repository.Entities.Category", b =>
+                {
+                    b.HasOne("Repository.Entities.Category", null)
+                        .WithMany("Subcategories")
+                        .HasForeignKey("CategoryId1");
+                });
+
             modelBuilder.Entity("Repository.Entities.Question", b =>
                 {
                     b.HasOne("Repository.Entities.Category", "category")
@@ -205,6 +217,8 @@ namespace CodeFirst.Migrations
             modelBuilder.Entity("Repository.Entities.Category", b =>
                 {
                     b.Navigation("Questions");
+
+                    b.Navigation("Subcategories");
                 });
 
             modelBuilder.Entity("Repository.Entities.Company", b =>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Dto
 {
+    
     public class CategoryDto
     {
             public int CategoryId { get; set; }

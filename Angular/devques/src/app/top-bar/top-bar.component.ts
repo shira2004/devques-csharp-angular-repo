@@ -27,6 +27,9 @@ export class TopBarComponent {
   }
   signIn(){
     console.log('before route');
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['/sign-up']);
+  }
+  ques(){
+    this.router.navigate(['/ques']);
   }
 }

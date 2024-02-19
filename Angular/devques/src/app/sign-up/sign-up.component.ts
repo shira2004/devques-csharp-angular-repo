@@ -5,6 +5,8 @@ import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup} fr
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { User } from '../user.model';
 
 
 @Component({
@@ -21,33 +23,33 @@ import { Router } from '@angular/router';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent implements OnInit {
-  constructor(private router: Router){}
+  constructor(private router: Router , private _userService: UserService ){}
   ngOnInit(): void {
     this.SignUpForm = new FormGroup({
-    email : new FormControl('', [Validators.required, Validators.email]),
-    password :new FormControl('', [Validators.required]),
-    firstName : new FormControl('', [Validators.required]),
-    lastName : new FormControl('', [Validators.required]),
-    receiveUpdates : new FormControl(false)
+      firstName : new FormControl('', [Validators.required]),
+      lastName : new FormControl('', [Validators.required]),
+      email : new FormControl('', [Validators.required, Validators.email]),
+      password :new FormControl('', [Validators.required]),
+    // receiveUpdates : new FormControl(false)
     });
   }
   SignUpForm!: FormGroup;
- 
-  // getErrorMessage() {
-  //   if (this.email.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-
-  //   return this.email.hasError('email') ? 'Not a valid email' : '';
-  // }
-  
   hide = true;
 
 
-   submit() {
-    console.log('hi');
+  submit() {
     console.log('Form Object:', this.SignUpForm.value);
- 
+
+    const userToAdd: User = this.SignUpForm.value;
+
+    this._userService.addUserByServer(userToAdd).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+  });
   }
   signIn(){
     this.router.navigate(['/sign-in']);

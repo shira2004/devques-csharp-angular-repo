@@ -28,10 +28,6 @@ namespace Repository.Repositories
             this.context.save();
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
     
 

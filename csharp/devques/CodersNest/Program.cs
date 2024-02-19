@@ -24,6 +24,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddServises() ;
 builder.Services.AddDbContext<IContext,DataContext > ();
+
+var policy = "policy";
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy(name: policy, policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,5 +47,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors(policy);
 app.Run();
