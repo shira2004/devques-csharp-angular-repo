@@ -1,14 +1,18 @@
-import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
+
+
+import { Router } from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { Router } from '@angular/router';
-import { UserService } from '../../../user.service';
-import { User } from '../../user.model';
 import {MatDialog} from '@angular/material/dialog'
+
+
+import { UserService } from '../../../user.service';
 import { DialogComponent } from '../../../home-components/dialog/dialog.component';
+import { User } from '../../user.model';
 
 
 @Component({
