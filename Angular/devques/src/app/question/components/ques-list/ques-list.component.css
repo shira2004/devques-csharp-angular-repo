@@ -14,5 +14,26 @@
 
 .mat-card {
   max-width: 345px;
-  width: 100%; /* Make sure the card takes up the full width of its container */
+  width: 100%; 
+}
+.circle-button {
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%;
+  margin-top: 6px;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+h1  , h3{
+  text-align: center;
 }

@@ -1,3 +1,5 @@
+<h1 style="margin-top: 10px; color: #555; " >Techy Quest</h1>
+<h3 style="margin-top: 10px; color: #555;">Rate the difficulty to receive personalized challenges and improve the platform for a better learning experience. 🌐🚀</h3>
 <div class="card-container">
   <div *ngFor="let ques of quesList" class="card-item">
     <mat-card style="margin-top: 15px; width: 768px;">
@@ -8,10 +10,10 @@
             <p mat-card-subtitle>{{getCompanyName(ques.companyId)}}</p>
           </mat-card-content>
         </div>
-        <div class="buttons-container" style="position: absolute; top: 30px; right: 6px; display: flex; flex-direction: column;">
-          <button mat-stroked-button color="warn" (click)="showDetails(ques)">R</button>
-          <button mat-stroked-button color="accent" style="margin-top: 6px;" (click)="showDetails(ques)">Y</button>
-          <button mat-stroked-button color="success" style="margin-top: 6px;" (click)="showDetails(ques)">G</button>
+        <div class="buttons-container" style="position: absolute; top: 40px; right: 6px; display: flex; flex-direction: column;">
+          <button  (click)="showDetails(ques)" class="circle-button green"></button>
+          <button (click)="showDetails(ques)" class="circle-button red"></button>
+          <button (click)="showDetails(ques)" class="circle-button yellow"></button>
         </div>
       </div>
     </mat-card>
