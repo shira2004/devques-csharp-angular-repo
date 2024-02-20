@@ -5,7 +5,7 @@ import { TopBarComponent } from "./home-components/top-bar/top-bar.component";
 import { FooterComponent } from "./home-components/footer/footer.component";
 import { SignUpComponent } from './log-in/components/sign-up/sign-up.component';
 import { HeaderComponent } from './home-components/header/header.component';
-
+import { CategorySelctionComponent } from './category-selction/category-selction.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,7 +16,7 @@ import { HeaderComponent } from './home-components/header/header.component';
     TopBarComponent, FooterComponent, 
     RouterModule, 
     SignUpComponent,
-    HeaderComponent]
+    HeaderComponent ,CategorySelctionComponent]
 })
 export class AppComponent {
   title = 'DevQues';
