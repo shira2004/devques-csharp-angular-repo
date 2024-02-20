@@ -5,8 +5,10 @@ import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup} fr
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
-import { User } from '../user.model';
+import { UserService } from '../../../user.service';
+import { User } from '../../user.model';
+import {MatDialog} from '@angular/material/dialog'
+import { DialogComponent } from '../../../home-components/dialog/dialog.component';
 
 
 @Component({
@@ -17,13 +19,13 @@ import { User } from '../user.model';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,  
    ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent implements OnInit {
-  constructor(private router: Router , private _userService: UserService ){}
+  constructor(private router: Router , private _userService: UserService , public dialog:MatDialog  ){}
   ngOnInit(): void {
     this.SignUpForm = new FormGroup({
       firstName : new FormControl('', [Validators.required]),
@@ -33,27 +35,36 @@ export class SignUpComponent implements OnInit {
     // receiveUpdates : new FormControl(false)
     });
   }
+   dialogData = {
+    text1: 'Welcome!',
+    text2: 'Your account has been successfully added.',
+    imageSrc: '../../assets/pic/sign.gif',
+    button: {
+      label: 'OK',
+      onClick: () => {
+        this.router.navigate(['home']);
+        console.log('OK button clicked');
+       
+      },
+    },
+  };
   SignUpForm!: FormGroup;
   hide = true;
-
-
   submit() {
     console.log('Form Object:', this.SignUpForm.value);
-
     const userToAdd: User = this.SignUpForm.value;
-
+  
     this._userService.addUserByServer(userToAdd).subscribe({
       next: (res) => {
         console.log(res);
+        localStorage.setItem('user', JSON.stringify(res))
+        this.dialog.open(DialogComponent, {
+          data: this.dialogData
+        });
       },
       error: (err) => {
         console.log(err);
       }
-  });
+    });
   }
-  signIn(){
-    this.router.navigate(['/sign-in']);
-  }
-  
-
-}
+}  

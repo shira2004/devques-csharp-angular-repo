@@ -1,31 +1,15 @@
-import { QuestionService } from './../question.service';
+import { QuestionService } from '../../../question.service';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatButtonModule} from '@angular/material/button';
-import { CommonModule } from '@angular/common';
-import {MatSelectModule} from '@angular/material/select';
-import { Category } from '../category.model';
-import { CategoryService } from '../category.service';
-import { log } from 'console';
-import { Question } from '../question.model';
+import {FormBuilder, Validators} from '@angular/forms';
+
+import { Category } from '../../../category.model';
+import { CategoryService } from '../../../category.service';
+import { Question } from '../../../question.model';
 
 
 @Component({
   selector: 'app-add-ques',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule
-  ],
+
   templateUrl: './add-ques.component.html',
   styleUrl: './add-ques.component.css'
 })

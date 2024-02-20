@@ -1,0 +1,12 @@
+.icon-image {
+    padding-left: 15px;
+  }
+  .fixed-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000; /* Adjust the z-index as needed */
+    box-shadow: none; /* Remove box shadow if not needed */
+  }

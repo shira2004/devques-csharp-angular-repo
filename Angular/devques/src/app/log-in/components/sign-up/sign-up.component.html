@@ -42,7 +42,7 @@
     email.</mat-checkbox> -->
   <!-- <button type="button" (click)="submit()">Submit</button> -->
   <br />
-  <button mat-raised-button class="submit" (click)="submit()">Sign Up</button>
+  <button mat-raised-button class="submit" (click)="submit()" [disabled]="SignUpForm.invalid">Sign Up</button>
   
   <!-- <li routerLink ="/signUp" routerLinkActive ="active"><a>Already have an account? Sign in </a></li> -->
 </form>

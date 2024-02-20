@@ -1,0 +1,17 @@
+/* dialog.component.css */
+::ng-deep .mat-dialog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* optional, for text alignment */
+  }
+  
+  ::ng-deep .mat-dialog-content {
+    margin: 16px; /* optional, adjust the margin as needed */
+  }
+  
+  ::ng-deep .mat-dialog-actions {
+    margin-top: 16px; /* optional, adjust the margin as needed */
+  }
+  

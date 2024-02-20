@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { QuestionService } from '../question.service';
-import { Question } from '../question.model';
-
-import {MatCardModule} from '@angular/material/card';
-
+import { QuestionService } from '../../../question.service';
+import { Question } from '../../../question.model';
 @Component({
   selector: 'app-details',
-  standalone: true,
-  imports: [MatCardModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
@@ -17,7 +12,7 @@ export class DetailsComponent implements OnInit {
   private questionId!:number
 
    question1: any = {
-    quesId: 1,
+    questionId: 1,
     content: 'Sample question 1',
     user: { userId: 1, username: 'john_doe', lastName: 'Doe' },
     date: new Date('2022-02-20'),

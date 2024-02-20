@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { LeftSectionComponent } from '../left-section/left-section.component';
 import { RightSectionComponent } from '../right-section/right-section.component';
-import { CarouselComponent } from '../carousel/carousel.component';
+import { CarouselComponent } from '../../unuseful/carousel/carousel.component';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',

@@ -18,7 +18,9 @@ export class TopBarComponent {
 
   addQues(){
     console.log('before route'); 
-    this.router.navigate(['/add-ques']);
+    console.log('try to navigate to add ques');
+    
+    this.router.navigate(['/ques/add-ques']);
   }
 
   about(){
@@ -30,6 +32,6 @@ export class TopBarComponent {
     this.router.navigate(['/sign-up']);
   }
   ques(){
-    this.router.navigate(['/ques']);
+    this.router.navigate(['/ques/ques-list']);
   }
 }

@@ -1,10 +1,10 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { TopBarComponent } from "./top-bar/top-bar.component";
-import { FooterComponent } from "./footer/footer.component";
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { HeaderComponent } from './header/header.component';
+import { TopBarComponent } from "./home-components/top-bar/top-bar.component";
+import { FooterComponent } from "./home-components/footer/footer.component";
+import { SignUpComponent } from './log-in/components/sign-up/sign-up.component';
+import { HeaderComponent } from './home-components/header/header.component';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{ data.text1 }}</h2>
+<div mat-dialog-content>
+   
+  <p>{{ data.text2 }}</p>
+  <img *ngIf="data.imageSrc" [src]="data.imageSrc" alt="successfully added" />
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onClose()">Close</button> -->
+  <button mat-button (click)="onClose(); data.button.onClick()">{{ data.button.label }}</button>
+  <button mat-button (click)="onClose()">Close</button>
+</div>
