@@ -32,6 +32,6 @@ export class TopBarComponent {
     this.router.navigate(['/sign-up']);
   }
   ques(){
-    this.router.navigate(['/ques/ques-list']);
+    this.router.navigate(['/category-Selections']);
   }
 }
