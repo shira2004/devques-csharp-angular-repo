@@ -1,8 +1,8 @@
-import { QuestionService } from '../../../question.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 
 import { Category } from '../../../category.model';
+import { QuestionService } from '../../../question.service';
 import { CategoryService } from '../../../category.service';
 import { Question } from '../../../question.model';
 
@@ -38,6 +38,7 @@ export class AddQuesComponent implements OnInit{
       }
     })
 }
+
 commit() {
    this.ques = {
     categoryId: parseInt(this.firstFormGroup.get('categoryCtrl')!.value || '0'),

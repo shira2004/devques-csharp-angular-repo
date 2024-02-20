@@ -10,6 +10,7 @@ import { QuesListComponent } from './question/components/ques-list/ques-list.com
 import { DetailsComponent } from './question/components/details/details.component';
 import { AddQuesComponent } from './question/components/add-ques/add-ques.component';
 import { RecommendedQuestionsComponent } from './question/components/recommended-questions/recommended-questions.component';
+import { CategorySelctionComponent } from './category-selction/category-selction.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home' , pathMatch:'full'},
@@ -19,16 +20,10 @@ export const routes: Routes = [
     {path: 'sign-in' ,component: SignInComponent},
     {path: 'sign-up' ,component: SignUpComponent},
 
-    ///
-    // {path: 'ques-list' ,component: QuesListComponent},
-    // {path: "ques-details/:id", component: DetailsComponent },
-    // {path: 'add-ques' ,component: AddQuesComponent},
-    // {path: 'recommended-questions' ,component: RecommendedQuestionsComponent},
-    
-
+   
     {path: 'ques', loadChildren: () => import('./question/question.module').then(m => m.QuestionModule) },
     {path: 'dialog' ,component: DialogComponent},
+    {path: 'category-Selections' ,component: CategorySelctionComponent},
     {path: '**' ,component: NotFoundComponent},
-
 
 ];
