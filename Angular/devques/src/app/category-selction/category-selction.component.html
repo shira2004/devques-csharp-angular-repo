@@ -1,0 +1,12 @@
+<h1>🚀 Welcome to the High-Tech Interview Questions Generator! 🤖</h1>
+  <h4>Select the topics you want to explore during your interview. Happy learning! 🌟</h4>
+<mat-chip-listbox aria-label="Category selection">
+    <mat-chip-option *ngFor="let category of categoryList"
+                     (click)="categorySelected(category.categoryId)"
+                     >
+                     {{ category.categoryName }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+  
+  <button mat-button (click)="confirmSelection()">Confirm Selection</button>
+  
