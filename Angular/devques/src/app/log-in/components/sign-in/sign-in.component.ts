@@ -31,13 +31,13 @@ export class SignInComponent {
 
 
   submit() {
-   console.log('hi');
    console.log('Form Object:', this.SignInForm.value);
 
  }
- signUp(){
+ GoToSignUp(){
+  console.log('nav to sign up ');
+  
    this.router.navigate(['/sign-up']);
  }
- 
 
 }
