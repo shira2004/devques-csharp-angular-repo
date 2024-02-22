@@ -7,7 +7,7 @@
         <div class="inner-card" style="background-color: white; padding: 15px; border-radius: 15px; margin-right: 30px;">
           <mat-card-content>
             <h3 mat-card-title>{{ques.content}}</h3>
-            <p mat-card-subtitle>{{getCompanyName(ques.companyId)}}</p>
+            <p mat-card-subtitle>{{ques.companyId}}</p>
           </mat-card-content>
         </div>
         <div class="buttons-container" style="position: absolute; top: 40px; right: 6px; display: flex; flex-direction: column;">
@@ -15,6 +15,9 @@
           <button (click)="showDetails(ques)" class="circle-button red"></button>
           <button (click)="showDetails(ques)" class="circle-button yellow"></button>
         </div>
+        <button ></button>
+        <button mat-button color="primary" (click)="showDetails(ques)">Learn More</button>
+
       </div>
     </mat-card>
     <br />

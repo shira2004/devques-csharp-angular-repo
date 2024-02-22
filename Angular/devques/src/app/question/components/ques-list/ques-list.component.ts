@@ -24,53 +24,27 @@ export class QuesListComponent {
 
     this.route.queryParams.subscribe((params) => {
       const categoryIds: number[] = params['categories'] ? params['categories'].split(',').map(Number) : [];
-
-      if (categoryIds.length > 0) {
-       console.log('going to futch by category IDs 😂')
+       console.log('going to fetch by category IDs 😂')
         this._quesService.getQuestionsByCategoryIds(categoryIds).subscribe({
           next: (res) => {
             console.log(res);
-            this.filterQuesArr = this.quesList = res;
+            this.quesList = res;
           },
           error: (err) => {
             console.log(err);
           }
         });
-      } else {
-        console.log('going to futch all 😒')
-        // Fetch all questions if no specific category IDs are provided
-        this._quesService.getAllQuestionByServer().subscribe({
-          next: (res) => {
-            console.log(res);
-            this.filterQuesArr = this.quesList = res;
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        });
-      }
+      
     });
   }
 
   public showDetails(ques: Question) {
-    console.log(ques);
 
-    console.log('im after clicking ');
-    console.log(ques.questionId);
-
-    this.router.navigate(['/ques-details', ques.questionId]);
+    this._quesService.setSelectedQuestion(ques);
+    this.router.navigate(['/ques/ques-details', ques.questionId]);
   }
 
-  public filterQues() {
-    this.filterQuesArr = this.quesList.filter((st) => {
-      //return st.content.includes(this.search);
-      //  || st.Company.includes(this.search) 
-    });
-  }
+  
 
-  getCompanyName(comp: number) {
-    // const company = this._companyService.getAllCompaniesByServer.find(c => c.companyId === companyId);
-    // return company ? company.companyName : 'Unknown Company';
-    return 'intel';
-  }
+  
 }
