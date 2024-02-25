@@ -49,5 +49,43 @@ namespace DevQues.Controllers
         public void Delete(int id)
         {
         }
+
+
+
+        [HttpGet("GetAnswersByQuestionId/{questionId}")]
+        public IActionResult GetAnswersByQuestionId(int questionId)
+        {
+            try
+            {
+                List<AnswerDto> answers = _service.GetAll().Where(answer => answer.QuestionId == questionId).ToList();
+
+                if (answers == null || answers.Count == 0)
+                {
+                    return NotFound($"No answers found for question with ID {questionId}");
+                }
+
+                return Ok(answers);
+            }
+            catch (Exception ex)
+            {
+                
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+     [HttpPost("category")]
+     public List<AnswerDto> GetByCategory([FromBody] int[] categoryIds)
+     {
+         if (categoryIds == null || categoryIds.Length == 0)
+         {
+             return _service.GetAll();
+         }
+     
+         var answersInCategories =_service.GetAll().Where(a =>categoryIds.Contains(a.categoryId)).ToList();
+            // _service.GetAll().Where(a => categoryIds.Contains(a.CategoryId)).ToList();
+
+            return answersInCategories;
+     }
+      
     }
 }
