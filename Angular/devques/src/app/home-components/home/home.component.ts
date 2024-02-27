@@ -4,6 +4,7 @@ import { LeftSectionComponent } from '../left-section/left-section.component';
 import { RightSectionComponent } from '../right-section/right-section.component';
 import { CarouselComponent } from '../../unuseful/carousel/carousel.component';
 import { Router } from '@angular/router';
+import { APP_ROUTES } from '../../app_routes';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,15 +16,16 @@ export class HomeComponent {
   constructor(private router: Router){}
 
   onJoinSectionClick(){
-    this.router.navigate(['sign-up']);
+    this.router.navigate( [APP_ROUTES.SIGN_UP]);
   }
   onStartSectionClick(){
-    this.router.navigate(['ques']);
+    this.router.navigate([APP_ROUTES.CATEGORY_SELECTIONS]);
   }
   onAboutSectionClick(){
-    this.router.navigate(['About']);
+    this.router.navigate([APP_ROUTES.ABOUT]);
+   
   }
   onAddQuesSectionClick(){
-    this.router.navigate(['add-ques']);
+    this.router.navigate( [APP_ROUTES.SIGN_UP]);
   }
 }
