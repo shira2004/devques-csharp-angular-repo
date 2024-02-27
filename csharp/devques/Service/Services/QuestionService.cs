@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class QuestionService : IService<QuestionDto>
+    public class QuestionService : IQuestion<QuestionDto>
     {
         private readonly IRepository<Question> repository;
         private readonly IMapper mapper;
@@ -36,14 +36,19 @@ namespace Service.Services
             return mapper.Map<List<QuestionDto>>(repository.GetAll());
         }
 
+        public List<QuestionDto> GetByCategory(int[] categoryIds)
+        {
+            return mapper.Map<List<QuestionDto>>(repository.GetAll().Where(q => categoryIds.Contains(q.CategoryId)));
+        }
+
         public QuestionDto GetById(int id)
         {
-            throw new NotImplementedException();
+            return mapper.Map<QuestionDto>(repository.Get(id));
         }
 
         public void Update(int id, QuestionDto entity)
         {
-            throw new NotImplementedException();
+            repository.Update(id, mapper.Map<Question>(entity));
         }
     }
 }
