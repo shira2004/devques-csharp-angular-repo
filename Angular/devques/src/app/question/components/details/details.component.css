@@ -1,6 +1,21 @@
+
+@import 'highlight.js/styles/monokai-sublime.css';
+/* 
+* {
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+} */
+
 .center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.code-container {
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-x: auto;
+ 
+}

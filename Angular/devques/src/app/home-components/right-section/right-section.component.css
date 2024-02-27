@@ -4,7 +4,9 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
-
+* {
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
 .container2 {
   display: grid;
   grid-template-columns: 1fr 1fr;

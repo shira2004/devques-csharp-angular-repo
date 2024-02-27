@@ -10,3 +10,6 @@
     z-index: 1000; /* Adjust the z-index as needed */
     box-shadow: none; /* Remove box shadow if not needed */
   }
+  * {
+    font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+  }

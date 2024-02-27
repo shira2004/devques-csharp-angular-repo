@@ -8,8 +8,23 @@
     margin-top: 8px;
    
   }
+  * {
+    font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+  }
   
   :host .mat-mdc-form-field {
     margin-top: 16px;
     
+  }
+  .dark-textarea-container {
+    background-color: #000; /* Dark background color */
+  }
+  
+  .dark-textarea {
+    color: #fff; /* Light text color */
+    font-family: monospace; /* Use a monospace font for consistent spacing */
+    padding-left: 10px; /* Adjust padding for better appearance */
+    line-height: 1.5; /* Adjust line height for better readability */
+    border: 1px solid #333; /* Add a border for separation */
+    width: 100%; /* Make the textarea fill the width of the container */
   }
