@@ -13,17 +13,17 @@ import { RecommendedQuestionsComponent } from './question/components/recommended
 import { CategorySelctionComponent } from './category-selction/category-selction.component';
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'home' , pathMatch:'full'},
-    { path: 'home', loadComponent: () => import('./home-components/home/home.component').then(c => c.HomeComponent)},
-    {path: 'About' ,component: AboutComponent},
-    {path: 'my-account' ,component: MyAccountComponent},
-    {path: 'sign-in' ,component: SignInComponent},
-    {path: 'sign-up' ,component: SignUpComponent},
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', loadComponent: () => import('./home-components/home/home.component').then(c => c.HomeComponent) },
+    { path: 'About', component: AboutComponent },
+    { path: 'my-account', component: MyAccountComponent },
+    { path: 'sign-in', component: SignInComponent },
+    { path: 'sign-up', component: SignUpComponent },
 
-   
-    {path: 'ques', loadChildren: () => import('./question/question.module').then(m => m.QuestionModule) },
-    {path: 'dialog' ,component: DialogComponent},
-    {path: 'category-Selections' ,component: CategorySelctionComponent},
-    {path: '**' ,component: NotFoundComponent},
+
+    { path: 'ques', loadChildren: () => import('./question/question.module').then(m => m.QuestionModule) },
+    { path: 'dialog', component: DialogComponent },
+    { path: 'category-Selections', component: CategorySelctionComponent },
+    { path: '**', component: NotFoundComponent },
 
 ];
