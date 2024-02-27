@@ -38,12 +38,12 @@ namespace Service.Services
 
         public AnswerDto GetById(int id)
         {
-            throw new NotImplementedException();
+            return mapper.Map<AnswerDto>(repository.Get(id));
         }
 
         public void Update(int id, AnswerDto entity)
         {
-            throw new NotImplementedException();
+            repository.Update(id, mapper.Map<Answer>(entity));
         }
     }
 }
