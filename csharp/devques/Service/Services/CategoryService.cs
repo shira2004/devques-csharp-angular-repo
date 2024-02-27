@@ -37,12 +37,12 @@ namespace Service.Services
 
         public CategoryDto GetById(int id)
         {
-            throw new NotImplementedException();
+            return mapper.Map<CategoryDto>(repository.Get(id));
         }
 
         public void Update(int id, CategoryDto entity)
         {
-            throw new NotImplementedException();
+            repository.Update(id, mapper.Map<Category>(entity));
         }
     }
 }
