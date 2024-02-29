@@ -5,9 +5,10 @@ export class Answer{
     userId!:number
     user?: User
     questionId! :number
-    rating!:0
+    rating?:0
     categoryId!:number
     code?:string
+    image?:string
 
     
 }
