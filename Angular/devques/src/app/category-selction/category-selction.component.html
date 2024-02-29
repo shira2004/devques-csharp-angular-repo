@@ -8,5 +8,17 @@
     </mat-chip-option>
   </mat-chip-listbox>
   
-  <button mat-button (click)="confirmSelection()">Confirm Selection</button>
+  <button mat-fab extended color="primary" (click)="confirmSelectionQuestion()">
+    Go to Questions
+    <span class="material-symbols-outlined">
+      arrow_right_alt
+      </span>
+  </button>
+  <br/>
+  <button mat-fab extended color="primary" (click)="confirmSelectionQuiz()">
+    <span class="material-symbols-outlined">
+      arrow_left_alt
+      </span>
+    Go to Quiz
+  </button>
   
