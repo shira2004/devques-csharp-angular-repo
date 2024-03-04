@@ -16,6 +16,9 @@ namespace CodeFirst
         public DbSet<Category> categories { get; set; }
         public DbSet<Company> companies { get; set; }
         public DbSet<Question> questions { get; set; }
+        public DbSet<QuestionForUser > questionForUsers { get; set; }
+        public object Response { get ; set; }
+
         public void save()
         {
             SaveChanges();
@@ -23,7 +26,7 @@ namespace CodeFirst
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-SSNMLFD  ;database= DevQues;trusted_connection=true;");
+            optionsBuilder.UseSqlServer("server=DESKTOP-SSNMLFD;database=DevQues1;trusted_connection=true;");
         }
 
     }

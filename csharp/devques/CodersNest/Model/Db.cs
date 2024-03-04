@@ -11,8 +11,8 @@ namespace DevQues.Model
         public DbSet<Category> categories { get; set; }
         public DbSet<Company> companies { get; set; }
         public DbSet<Question> questions { get; set; }
+        public object Response { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        
         public void save()
         {
             throw new NotImplementedException();

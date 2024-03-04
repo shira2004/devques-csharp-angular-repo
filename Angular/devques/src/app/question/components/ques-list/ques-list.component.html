@@ -1,23 +1,52 @@
-<h1 style="margin-top: 10px; color: #555; " >Techy Quest</h1>
-<h3 style="margin-top: 10px; color: #555;">Rate the difficulty to receive personalized challenges and improve the platform for a better learning experience. 🌐🚀</h3>
+<h1 style="margin-top: 10px; color: #555; ">Techy Quest</h1>
+<h3 style="margin-top: 10px; color: #555;">Rate the difficulty to receive
+  personalized challenges and improve the platform for a better learning
+  experience. 🌐🚀</h3>
 <div class="card-container">
   <div *ngFor="let ques of quesList" class="card-item">
     <mat-card style="margin-top: 15px; width: 768px;">
-      <div class="outer-card" style="background-color: #e4e0cedd; padding: 30px; box-sizing: border-box; position: relative; border-radius: 15px;">
-        <div class="inner-card" style="background-color: white; padding: 15px; border-radius: 15px; margin-right: 30px;">
+      <div class="outer-card"
+        style="background-color: #e4e0cedd; padding: 30px; box-sizing: border-box; position: relative; border-radius: 15px;">
+        <div class="inner-card"
+          style="background-color: white; padding: 15px; border-radius: 15px; margin-right: 30px;">
           <mat-card-content>
-            <h3 mat-card-title>{{ques.content}}</h3>
-            <p mat-card-subtitle>{{ques.companyId}}</p>
-          </mat-card-content>
-        </div>
-        <div class="buttons-container" style="position: absolute; top: 40px; right: 6px; display: flex; flex-direction: column;">
-          <button  (click)="showDetails(ques)" class="circle-button green"></button>
-          <button (click)="showDetails(ques)" class="circle-button red"></button>
-          <button (click)="showDetails(ques)" class="circle-button yellow"></button>
-        </div>
-        <button ></button>
-        <button mat-button color="primary" (click)="showDetails(ques)">Learn More</button>
+            <mat-card-subtitle
+              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">            
+              <img *ngIf="ques?.user?.image" mat-card-img   class="avatar-image" [src]="'data:/images/png;base64,' + ques?.user?.image" alt="picture">
+              {{ques.user?.firstName}} {{ques.user?.lastName}}
+            </mat-card-subtitle>
 
+            <h2 mat-card-title
+              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{ques.title}}</h2>
+              <h3 mat-card-title
+              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{ques.content}}</h3>
+            <p mat-card-subtitle
+              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">
+              <!-- this is the company -->
+              {{ques.company?.companyName}}</p>
+          </mat-card-content>
+          <!-- img from server  -->
+          <img *ngIf="ques.image" class="custom-image" [src]="'data:image/png;base64,' + ques.image" alt="picture">
+
+
+        </div>
+        <div style="padding-top: 5px;">
+          <button mat-button>
+            easy
+            <img src="../../../../assets/pic/easy.png" alt>
+          </button>
+          <button mat-button>
+            medium
+            <img src="../../../../assets/pic/medium.png" alt>
+
+          </button>
+          <button mat-button>
+            hard
+            <img src="../../../../assets/pic/hard.png" alt>
+          </button>
+        </div>
+        <br />
+        <button mat-button (click)="showDetails(ques)"> learn More </button>
       </div>
     </mat-card>
     <br />

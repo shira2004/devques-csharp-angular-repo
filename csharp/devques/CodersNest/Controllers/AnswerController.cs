@@ -1,5 +1,6 @@
 ﻿using Common.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Entities;
 using Service.Interface;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,16 +12,28 @@ namespace DevQues.Controllers
     public class AnswerController : ControllerBase
     {
         private readonly IService<AnswerDto> _service;
+        private readonly ImageUploadService _imageUploadService;
 
-        public AnswerController(IService<AnswerDto> service)
+        public AnswerController(ImageUploadService imageUploadService ,IService<AnswerDto> service)
         {
+            _imageUploadService = imageUploadService;
             _service = service;
         }
         // GET: api/<AnswerController>
         [HttpGet]
         public List<AnswerDto> Get()
         {
-            return _service.GetAll();
+            List<AnswerDto> answers = _service.GetAll();
+
+         //  foreach (var answer in answers)
+         //  {
+         //      if (!string.IsNullOrEmpty(answer.Image))
+         //      {
+         //          answer.Image = _imageUploadService.EncodeImageToBase64(answer.Image);
+         //      }
+         //  }
+
+            return answers;
         }
 
         // GET api/<AnswerController>/5
@@ -32,22 +45,44 @@ namespace DevQues.Controllers
 
         // POST api/<AnswerController>
         [HttpPost]
-        public AnswerDto Post([FromBody] AnswerDto  value)
+        public AnswerDto Post([FromBody] AnswerDto value)
         {
-            return _service.Add(value); 
+            try
+            {
+                if (!string.IsNullOrEmpty(value.Image))
+                {
+                    string fileExtension = "PNG";
+                    string folderPath = "wwwroot/images";
+
+                    value.Image = _imageUploadService.UploadImage(value.Image.Split(',')[1], folderPath, fileExtension);
+                }
+
+                var result = _service.Add(value);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return null;
         }
 
         // PUT api/<AnswerController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
-            
+            var existingResource = _service.GetById(id);
+            existingResource.Content = value;
+
         }
 
         // DELETE api/<AnswerController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+           
         }
 
 
@@ -82,8 +117,7 @@ namespace DevQues.Controllers
          }
      
          var answersInCategories =_service.GetAll().Where(a =>categoryIds.Contains(a.categoryId)).ToList();
-            // _service.GetAll().Where(a => categoryIds.Contains(a.CategoryId)).ToList();
-
+            
             return answersInCategories;
      }
       

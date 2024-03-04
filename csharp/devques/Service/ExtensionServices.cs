@@ -22,7 +22,8 @@ namespace Service
             Services.AddScoped<IService<CategoryDto>, CategoryService>();
             Services.AddScoped<IService<CompanyDto>, CompanyService>();
             Services.AddScoped<IService<AnswerDto>, AnswerService>();
-            Services.AddScoped<IService<QuestionDto>, QuestionService>();
+            Services.AddScoped<IQuestion<QuestionDto>, QuestionService>();
+            Services.AddScoped<ImageUploadService>();
             Services.AddAutoMapper(typeof(MapperProfile));
             return Services;
         } 

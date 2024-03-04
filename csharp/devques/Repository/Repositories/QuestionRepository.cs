@@ -1,4 +1,5 @@
-﻿using Repository.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Repository.Entities;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -43,16 +44,14 @@ namespace Repository.Repositories
 
         public List<Question> GetAll()
         {
-            return this.context.questions.ToList();
+            return this.context.questions.Include(u=>u.User).Include(c => c.Company).ToList();
         }
 
         public void Update(int id, Question entity)
         {
             var ques = context.questions.FirstOrDefault(x => x.QuestionId == id);
             ques.Content = entity.Content;
-            //ques.Company = entity.Company;
-
-
+         
             this.context.save();
         }
 

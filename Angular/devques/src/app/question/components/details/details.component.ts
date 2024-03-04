@@ -1,43 +1,157 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { QuestionService } from '../../../question.service';
-import { Question } from '../../../question.model';
+import { QuestionService } from '../../../services/question.service';
+import { Question } from '../../../models/question.model';
+import { AnswerService } from '../../../services/answer.service';
+import { MatDialog } from '@angular/material/dialog';
+import { APP_ROUTES } from '../../../app_routes';
+import { DialogComponent } from '../../../home-components/dialog/dialog.component';
+import { Answer } from '../../../models/answer.model';
+
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrl: './details.component.css'
+  styleUrl: './details.component.css' 
 })
 export class DetailsComponent implements OnInit {
-  private questionId!:number
+// convertToBlobUrl(arg0: string|undefined): File {
+// throw new Error('Method not implemented.');
+// }
+  public question: Question | null = null;
+  public filteredAnswers: Answer[] = [];
+  showTextField = false;
+  showCodeField = false;
+  comment: string = '';
+  code: string = '';
+  public ans!:Answer
+  public userId!: number;
+  isDarkMode = true;
+  selectedImage: File | null = null;
+  base64Image: string | null = null;
 
-   question1: any = {
-    questionId: 1,
-    content: 'Sample question 1',
-    user: { userId: 1, username: 'john_doe', lastName: 'Doe' },
-    date: new Date('2022-02-20'),
-    answers: [
-      { answerId: 1, content: 'Sample answer 1', user: { userId: 1, username: 'john_doe', lastName: 'Doe' }, date: new Date('2022-02-21') },
-      { answerId: 2, content: 'Sample answer 2', user: { userId: 1, username: 'john_doe', lastName: 'Doe' }, date: new Date('2022-02-22') },
-    ],
-  };
- 
-  constructor(private route: ActivatedRoute,private _questionService: QuestionService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private _quesService: QuestionService,
+    private _ansService: AnswerService,
+    private renderer: Renderer2,
+    private el: ElementRef,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
-  public question!: Question
   ngOnInit(): void {
-    this.route.params.subscribe((parm) => {
-      this.questionId = parm['id'];
-      this._questionService.getQuestByIdFromServer(this.questionId).subscribe({
-        next: (res) => {
-          this.question = res
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      })
+    var currentUserString = localStorage.getItem('user');
 
-    })
+    if (currentUserString !== null) {
+      var currentUser = JSON.parse(currentUserString);
+      this.userId = currentUser.userId;
+
+    } else {
+      console.log('User data is not present in local storage.');
+    }
+    this._quesService.selectedQuestion$.subscribe((selectedQuestion) => {
+      this.question = selectedQuestion;
+      const allAnswers = this._ansService.getStoredAnswers();
+      if (this.question) {
+        this.filteredAnswers = allAnswers.filter(answer => answer.questionId === this.question?.questionId);
+      }
+      
+    });
+  }
+  
+  APP_ROUTES = APP_ROUTES
+  dialogData1 = {
+    text1: 'thank you !',
+    text2: 'Your answer has been successfully added.',
+    imageSrc: '../../assets/pic/sign.gif',
+    button: {
+      label: 'OK',
+      onClick: () => {
+        this.router.navigate([APP_ROUTES.HOME]);
+        console.log('OK button clicked');
+
+      },
+    },
+  };
+
+  dialogData2 = {
+    text1: 'ooppss!',
+    text2: 'we have problem to add your answer.',
+    imageSrc: '../../assets/pic/error.gif',
+    button: {
+      label: 'OK',
+      onClick: () => {
+        this.router.navigate(['home']);
+        console.log('OK button clicked');
+
+      },
+    },
+  };
+
+
+  toggleTextField() {
+    this.showTextField = !this.showTextField;
+  }
+  toggleCodeField() {
+    console.log('toggling code field');
+    console.log(this.showCodeField);
+    
+    this.showCodeField = !this.showCodeField;
+    console.log(this.showCodeField);
+    
+  }
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+}
+
+  onSubmit() {
+    console.log('submit func');
+    
+    this.ans = {
+      answerId: 0,
+      questionId: this.question?.questionId || 0,
+      userId: this.userId,
+      content: this.comment,
+      code:this.code,
+      rating: 0,
+      categoryId: this.question?.categoryId || 0,
+      image: this.base64Image || '',
+      
+    };
+    console.log(this.ans);
+    
+  
+    this._ansService.addAnswer(this.ans).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.dialog.open(DialogComponent, {
+          data: this.dialogData1
+        });
+      },
+      error: (err) => {
+        console.log('😢');
+        
+        console.log(err);
+        this.dialog.open(DialogComponent, {
+          data: this.dialogData2
+        });
+      }
+    });
   }
 
+  onFileSelected(event: any): void {
+    this.selectedImage = event.target.files[0];
+    if (this.selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.base64Image = e.target?.result as string;
+      };
+      reader.readAsDataURL(this.selectedImage);
+    }
+  }
+
+ 
+  
 }

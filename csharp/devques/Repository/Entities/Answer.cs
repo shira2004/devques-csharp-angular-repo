@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Entities
 {
     public class Answer
     {
+        [Key]
         public int AnswerId { get; set; }
         public DateTime date { get; set; }
 
-        [ForeignKey("Question")]
-        public int QuestionId { get; set; }
-        public  virtual Question question { get; set; }
+        public long QuestionId { get; set; }
+        [ForeignKey("QuestionId")]
+        public virtual Question? Question { get; set; }
 
-        [ForeignKey("User")]
-        public int UserId { get; set; } 
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User? User { get; set; }
 
-        public virtual User User { get; set; }
         public string Content { get; set; }
+        public string? Code { get; set; }
         public int Rating { get; set; }
+
+        public int CategoryId { get; set; }
+        public string? Image { get; set; }
     }
 }

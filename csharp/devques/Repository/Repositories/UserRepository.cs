@@ -4,6 +4,7 @@ using Repository.Entities;
 using Repository.Interface;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 
 namespace Repository.Repositories
 {
@@ -16,17 +17,34 @@ namespace Repository.Repositories
             this.context = context;
         }
 
+
         public User Add(User entity)
         {
+          
+            if (UserExistsWithName(entity.Email))
+            {
+                
+                throw new InvalidOperationException("User with the same name already exists.");
+                //this.context.Response.StatusCode = 409;
+                //return null;
+            }
+
             this.context.user.Add(entity);
-            this.context.save(); // Assuming Save() is a method to save changes
+            this.context.save();
             return entity;
+        }
+
+
+
+        private bool UserExistsWithName(string email)
+        {
+            return this.context.user.Any(u => u.Email == email);
         }
 
         public void Delete(User entity)
         {
             this.context.user.Remove(entity);
-            this.context.save(); // Assuming Save() is a method to save changes
+            this.context.save(); 
         }
 
         public User Get(int id)
@@ -57,5 +75,7 @@ namespace Repository.Repositories
         {
             return this.context.user.FirstOrDefault(x => x.Email == email);
         }
+
+
     }
 }

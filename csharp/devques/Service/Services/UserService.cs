@@ -25,7 +25,7 @@ namespace Service.Services
             return mapper.Map<UserDto>(repository.Add(mapper.Map<User>(item))); 
         }
 
-    public void Delete(int id)
+        public void Delete(int id)
         {
             repository.Delete(mapper.Map<User>(id));
         }
@@ -38,6 +38,11 @@ namespace Service.Services
         public UserDto GetById(int id)
         {
             return mapper.Map<UserDto>(repository.Get(id));   
+        }
+
+        public UserDto Login(string email, string password)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(int id, UserDto entity)

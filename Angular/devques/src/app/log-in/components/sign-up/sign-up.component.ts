@@ -3,6 +3,13 @@ import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } 
 
 
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { UserService } from '../../../services/user.service';
+import { DialogComponent } from '../../../home-components/dialog/dialog.component';
+import { User } from '../../user.model';
+import { APP_ROUTES } from '../../../app_routes';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,17 +17,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog'
 
 
-import { UserService } from '../../../user.service';
-import { DialogComponent } from '../../../home-components/dialog/dialog.component';
-import { User } from '../../user.model';
-import { APP_ROUTES } from '../../../app_routes';
-import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [MatFormFieldModule,
+  imports: [
+    MatFormFieldModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,

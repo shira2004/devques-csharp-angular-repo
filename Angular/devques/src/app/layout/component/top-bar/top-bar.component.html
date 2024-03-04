@@ -1,0 +1,37 @@
+<div
+  style="display: flex; justify-content: center; align-items: center; margin-top: 10px;"
+  class="fixed-menu">
+  <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color"
+    [style]="{ backgroundColor: 'white', boxShadow: 'none' }">
+    <mat-button-toggle value=" My account" (click)="myAccount()">
+      My account
+      <img src="../../assets/pic/my-account.png" alt="My Account"
+        class="icon-image">
+    </mat-button-toggle>
+
+    <!-- <mat-button-toggle value=" My account" (click)="myAccount()">
+        Interview tips
+        <img src="../../assets/pic/advice.png" alt="My Account"  class="icon-image" >
+      </mat-button-toggle> -->
+
+    <mat-button-toggle value=" My account" (click)="ques()">
+      Interview ques
+      <img src="../../assets/pic/idea.png" alt="My Account" class="icon-image">
+    </mat-button-toggle>
+
+    <mat-button-toggle value="Add ques" (click)="addQues()">
+      Add ques
+      <img src="../../assets/pic/question.png" alt="Add Ques" class="icon-image">
+    </mat-button-toggle>
+
+    <mat-button-toggle value=" About" (click)="about()">
+      About
+      <img src="../../assets/pic/about.png" alt="About" class="icon-image">
+    </mat-button-toggle>
+
+    <mat-button-toggle value=" Log In" (click)="signIn()">
+      Log In
+      <img src="../../assets/pic/log-in.png" alt="Log In" class="icon-image">
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

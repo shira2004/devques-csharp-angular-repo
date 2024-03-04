@@ -2,22 +2,43 @@
 using Common.Dto;
 using Repository.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
-    public class MapperProfile :Profile
+    public class MapperProfile : Profile
     {
-        public MapperProfile() 
+        public MapperProfile()
         {
-        CreateMap<User , UserDto>().ReverseMap();
-        CreateMap<Answer , AnswerDto>().ReverseMap();
-        CreateMap<Category , CategoryDto>().ReverseMap();
-        CreateMap<Company , CompanyDto>().ReverseMap();
-        CreateMap<Question , QuestionDto>().ReverseMap();
+            //byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+            CreateMap<User, UserDto>()
+     .ForMember(
+         dest => dest.Image,
+         opt => opt.MapFrom(src =>
+             src.Image != null
+                 ? Convert.ToBase64String(System.IO.File.ReadAllBytes(src.Image))
+                 : null
+         )
+     );
+
+            CreateMap<UserDto, User>();
+
+            CreateMap<Answer, AnswerDto>().ReverseMap();
+
+            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Company, CompanyDto>().ReverseMap();
+            CreateMap<Question, QuestionDto>().ReverseMap();
+          //  CreateMap<Question, QuestionDto>()
+          //      .ForMember(
+          //          dest => dest.Image,
+          //          opt => opt.MapFrom(src =>
+          //              src.Image != null
+          //                  ? Convert.ToBase64String(System.IO.File.ReadAllBytes(src.Image))
+          //                  : null
+          //          )
+          //      );
+          //
+          //  CreateMap<QuestionDto, Question>();
+
         }
     }
 }

@@ -3,11 +3,14 @@
       <div class="section1">
         <h2>{{ title }}</h2>
         <p class="paragraph">{{ description }}</p>
-        <button class="btnDark" (click)="onClick()" [style]="customStyle">
+        <div >
+         <button class="btnDark" (click)="onClick()" [style]="customStyle">
+          <!-- this is btn -->
           {{ buttonText }}
           <div class="icon">
           </div>
         </button>
+      </div>
       </div>
       <div class="img">
         <img

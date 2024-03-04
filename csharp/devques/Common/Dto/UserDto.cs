@@ -14,8 +14,11 @@ namespace Common.Dto
             public string LastName { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
-           // public virtual ICollection<Question> MarkedQuestions { get; set; } 
-            //public virtual ICollection<Answer> GivenAnswers { get; set; } 
-        
+        public string? Image { get; set; }
+
+
+        // public virtual ICollection<Question> MarkedQuestions { get; set; } 
+        //public virtual ICollection<Answer> GivenAnswers { get; set; } 
+
     }
 }

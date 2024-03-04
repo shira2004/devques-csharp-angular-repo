@@ -14,5 +14,8 @@ namespace Service.Interface
         void Update(int id, T entity);
         void Delete(int id);
 
+        //T Login(string email, string password);
+
+
     }
 }

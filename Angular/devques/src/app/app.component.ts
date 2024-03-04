@@ -1,22 +1,23 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { TopBarComponent } from "./home-components/top-bar/top-bar.component";
-import { FooterComponent } from "./home-components/footer/footer.component";
 import { SignUpComponent } from './log-in/components/sign-up/sign-up.component';
-import { HeaderComponent } from './home-components/header/header.component';
-import { CategorySelctionComponent } from './category-selction/category-selction.component';
+// import { MonacoComponent } from './monaco/monaco.component';
+import { newHomeComponent } from './new-home/new-home.component';
+import { LayoutModule } from './layout/layout.module';
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   imports: [RouterOutlet,
-    MatSlideToggleModule, 
-    TopBarComponent, FooterComponent, 
-    RouterModule, 
+    MatSlideToggleModule,
+    RouterModule,
     SignUpComponent,
-    HeaderComponent ,CategorySelctionComponent]
+    LayoutModule,
+    //  MonacoComponent,
+    newHomeComponent
+  ]
 })
 export class AppComponent {
   title = 'DevQues';

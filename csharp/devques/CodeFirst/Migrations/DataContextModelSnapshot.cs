@@ -30,12 +30,21 @@ namespace CodeFirst.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnswerId"), 1L, 1);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -63,16 +72,11 @@ namespace CodeFirst.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
-                    b.Property<int?>("CategoryId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
-
-                    b.HasIndex("CategoryId1");
 
                     b.ToTable("categories");
                 });
@@ -96,11 +100,11 @@ namespace CodeFirst.Migrations
 
             modelBuilder.Entity("Repository.Entities.Question", b =>
                 {
-                    b.Property<int>("QuestionId")
+                    b.Property<long>("QuestionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("QuestionId"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -115,11 +119,23 @@ namespace CodeFirst.Migrations
                     b.Property<DateTime>("DateUpload")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Kind")
+                        .HasColumnType("int");
+
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<string>("code")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QuestionId");
 
@@ -130,6 +146,32 @@ namespace CodeFirst.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("questions");
+                });
+
+            modelBuilder.Entity("Repository.Entities.QuestionForUser", b =>
+                {
+                    b.Property<int>("IdQues")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdQues"), 1L, 1);
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdQues");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("questionForUsers");
                 });
 
             modelBuilder.Entity("Repository.Entities.User", b =>
@@ -148,6 +190,9 @@ namespace CodeFirst.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -163,7 +208,7 @@ namespace CodeFirst.Migrations
 
             modelBuilder.Entity("Repository.Entities.Answer", b =>
                 {
-                    b.HasOne("Repository.Entities.Question", "question")
+                    b.HasOne("Repository.Entities.Question", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -175,21 +220,14 @@ namespace CodeFirst.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Question");
+
                     b.Navigation("User");
-
-                    b.Navigation("question");
-                });
-
-            modelBuilder.Entity("Repository.Entities.Category", b =>
-                {
-                    b.HasOne("Repository.Entities.Category", null)
-                        .WithMany("Subcategories")
-                        .HasForeignKey("CategoryId1");
                 });
 
             modelBuilder.Entity("Repository.Entities.Question", b =>
                 {
-                    b.HasOne("Repository.Entities.Category", "category")
+                    b.HasOne("Repository.Entities.Category", "Category")
                         .WithMany("Questions")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -201,24 +239,41 @@ namespace CodeFirst.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Repository.Entities.User", "user")
-                        .WithMany("MarkedQuestions")
+                    b.HasOne("Repository.Entities.User", "User")
+                        .WithMany("Questions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Category");
+
                     b.Navigation("Company");
 
-                    b.Navigation("category");
+                    b.Navigation("User");
+                });
 
-                    b.Navigation("user");
+            modelBuilder.Entity("Repository.Entities.QuestionForUser", b =>
+                {
+                    b.HasOne("Repository.Entities.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Repository.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Repository.Entities.Category", b =>
                 {
                     b.Navigation("Questions");
-
-                    b.Navigation("Subcategories");
                 });
 
             modelBuilder.Entity("Repository.Entities.Company", b =>
@@ -235,7 +290,7 @@ namespace CodeFirst.Migrations
                 {
                     b.Navigation("Answers");
 
-                    b.Navigation("MarkedQuestions");
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,11 +6,6 @@ import { NotFoundComponent } from './home-components/not-found/not-found.compone
 import { DialogComponent } from './home-components/dialog/dialog.component';
 import { AboutComponent } from './home-components/about/about.component';
 import { SignInComponent } from './log-in/components/sign-in/sign-in.component';
-import { QuesListComponent } from './question/components/ques-list/ques-list.component';
-import { DetailsComponent } from './question/components/details/details.component';
-import { AddQuesComponent } from './question/components/add-ques/add-ques.component';
-import { RecommendedQuestionsComponent } from './question/components/recommended-questions/recommended-questions.component';
-import { CategorySelctionComponent } from './category-selction/category-selction.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +18,6 @@ export const routes: Routes = [
 
     { path: 'ques', loadChildren: () => import('./question/question.module').then(m => m.QuestionModule) },
     { path: 'dialog', component: DialogComponent },
-    { path: 'category-Selections', component: CategorySelctionComponent },
     { path: '**', component: NotFoundComponent },
 
 ];

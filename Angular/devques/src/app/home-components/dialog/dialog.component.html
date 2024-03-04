@@ -1,11 +1,11 @@
-<h2 mat-dialog-title>{{ data.text1 }}</h2>
-<div mat-dialog-content>
-   
+<h2 mat-dialog-title  class="centered-content">{{ data.text1 }}</h2>
+<div mat-dialog-content class="centered-content">
   <p>{{ data.text2 }}</p>
-  <img *ngIf="data.imageSrc" [src]="data.imageSrc" alt="successfully added" />
+  <div class="image-container">
+    <img *ngIf="data.imageSrc" [src]="data.imageSrc" alt="successfully added" />
+  </div>
 </div>
 <div mat-dialog-actions>
-  <!-- <button mat-button (click)="onClose()">Close</button> -->
-  <button mat-button (click)="onClose(); data.button.onClick()">{{ data.button.label }}</button>
+  <button mat-button color="primary" (click)="onClose(); data.button.onClick()">{{ data.button.label }}</button>
   <button mat-button (click)="onClose()">Close</button>
 </div>

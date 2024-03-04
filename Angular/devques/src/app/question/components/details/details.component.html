@@ -1,10 +1,94 @@
-<div class="center-container">
-<mat-card>
-    <mat-card-content>
-      <!-- <mat-card-subtitle>{{question1.date}}</mat-card-subtitle> -->
-      <!-- <mat-card-subtitle>{{ question1.user.firstName }} {{ question1.user.lastName }}</mat-card-subtitle> -->
-        <p>{{question?.content}}</p>
-        <p>{{question?.categoryId}}</p>
-    </mat-card-content>
-  </mat-card>
-</div>
+
+<link rel="stylesheet"
+  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-dark.min.css" />
+<script
+  src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+<mat-card style="max-width: 900px; margin: 0 auto;">
+  <mat-card-header>
+    <mat-card-subtitle
+      style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">
+      <img *ngIf="question?.user?.image"
+        mat-card-img
+        class="avatar-image"
+        [src]="'data:/images/png;base64,' + question?.user?.image"
+        alt="picture">
+      {{question?.user?.firstName}} {{question?.user?.lastName}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <p style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{question?.content}}</p>
+    <!-- <pre><code class="code-highlight" [innerText]="question?.code"></code></pre> -->
+
+    <pre>
+      <code class="code-highlight" appHighlight [innerText]="question?.code"></code>
+    </pre>
+
+    <img *ngIf="question?.image" mat-card-img class="custom-image"
+      [src]="'data:/images/png;base64,' +question?.image" alt="picture">
+
+  </mat-card-content>
+  <br />
+  <h3
+    style="text-align: center; font-family: 'Poppins', 'Helvetica Neue', sans-serif;">
+    <img src="../../../../assets/pic/solution.png" alt>
+    <br />
+    Responses and Comments
+  </h3>
+  <mat-card-content>
+    <div *ngFor="let ans of filteredAnswers" class="card-item">
+      <mat-card style="max-width: 900px; margin: 0 auto; margin-bottom: 20px;;">
+        <mat-card-content>
+          <mat-card-subtitle>
+            <img *ngIf="ans?.user?.image" mat-card-img class="avatar-image"
+              [src]="'data:/images/png;base64,' + ans?.user?.image"
+              alt="picture">
+            {{ ans.user?.firstName }} </mat-card-subtitle>
+          <span class="material-symbols-outlined">
+            thumb_down
+          </span>
+          <p style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{
+            ans.content }}</p>
+          <pre><code class="code-highlight" [innerHTML]="ans.code"></code></pre>
+          <img *ngIf="ans?.image" mat-card-img class="custom-image"
+            [src]="'data:/images/png;base64,' +ans?.image" alt="picture">
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="toggleTextField()">Add A Comment</button>
+    <br />
+    <div *ngIf="showTextField">
+      <mat-form-field style="width:450px;">
+        <mat-label>your comment</mat-label>
+        <textarea matInput [(ngModel)]="comment" name="comment" rows="3"></textarea>
+      </mat-form-field>
+      <br />
+      <div *ngIf="showCodeField">
+        <mat-form-field style="width:450px;">
+          <mat-label>your comment</mat-label>
+          <textarea rows="10" matInput [(ngModel)]="code" name="code"
+            style="background-color: #000; color:  #fff;"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; align-items: center;">
+        <button mat-button (click)="toggleCodeField()"
+          style="margin-right: 10px;">
+          <img src="../../../../assets/pic/code.png" alt>
+        </button>
+
+        <label for="fileInput" style="cursor: pointer;">
+          <img src="../../../../assets/pic/image.png" alt>
+        </label>
+        <input id="fileInput" type="file" style="display: none;"
+          (change)="onFileSelected($event)" accept="image/*" />
+
+        <button mat-button (click)="onSubmit()">submit Comment</button>
+      </div>
+    </div>
+    <br />
+  </mat-card-actions>
+</mat-card> <img src="../../../../assets/pic/coders.png" alt="code"
+  style="width: 100%; height: auto;">

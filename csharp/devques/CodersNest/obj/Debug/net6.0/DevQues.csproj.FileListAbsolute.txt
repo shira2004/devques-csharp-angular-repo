@@ -152,3 +152,6 @@ C:\Users\user1\Desktop\devques-csharp-angular\csharp\devques\CodersNest\obj\Debu
 C:\Users\user1\Desktop\devques-csharp-angular\csharp\devques\CodersNest\obj\Debug\net6.0\DevQues.pdb
 C:\Users\user1\Desktop\devques-csharp-angular\csharp\devques\CodersNest\obj\Debug\net6.0\DevQues.genruntimeconfig.cache
 C:\Users\user1\Desktop\devques-csharp-angular\csharp\devques\CodersNest\obj\Debug\net6.0\ref\DevQues.dll
+C:\Users\user1\Desktop\devques-csharp-angular\csharp\devques\CodersNest\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\user1\Desktop\devques-csharp-angular\csharp\devques\CodersNest\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\user1\Desktop\devques-csharp-angular\csharp\devques\CodersNest\bin\Debug\net6.0\DevQues.staticwebassets.runtime.json

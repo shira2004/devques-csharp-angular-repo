@@ -8,6 +8,7 @@ using Repository.Repositories;
 using Service;
 using Service.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,6 +25,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddServises() ;
 builder.Services.AddDbContext<IContext,DataContext > ();
+
 
 var policy = "policy";
 builder.Services.AddCors(option =>
@@ -42,9 +44,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
+//אימות משתמשים 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 app.UseCors(policy);

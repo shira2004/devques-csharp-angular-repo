@@ -1,4 +1,5 @@
-﻿using Repository.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Repository.Entities;
 using Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Repository.Repositories
 
         public List<Answer> GetAll()
         {
-            return this.context.answers.ToList();
+            return this.context.answers.Include(u => u.User).ToList(); 
         }
 
         public void Update(int id , Answer entity)

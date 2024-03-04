@@ -50,5 +50,19 @@ namespace Service.Services
         {
             repository.Update(id, mapper.Map<Question>(entity));
         }
+
+        public string EncodeImageToBase64(string imagePath)
+        {
+            try
+            {
+                byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+                return Convert.ToBase64String(imageBytes);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error encoding image: {ex.Message}");
+                return null;
+            }
+        }
     }
 }

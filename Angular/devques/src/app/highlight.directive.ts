@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef } from '@angular/core';
-// import * as hljs from 'highlight.js/lib/core';
+import * as hljs from 'highlight.js/lib/core';
 // import 'highlight.js/styles/agate-dark.css';
 import 'highlight.js/lib/languages/javascript';
 
@@ -7,11 +7,11 @@ import 'highlight.js/lib/languages/javascript';
   selector: '[appHighlight]',
   standalone: true
 })
-export class HighlightDirective {
+export class HighlightDirective implements AfterViewInit {
 
-  constructor() { }
+  constructor(private el: ElementRef) { }
 
-  // ngAfterViewInit(): void {
-  //   (hljs as any).highlightElement(this.el.nativeElement);
-  // }
+  ngAfterViewInit(): void {
+    (hljs as any)?.highlightElement(this.el.nativeElement);
+  }
 }
