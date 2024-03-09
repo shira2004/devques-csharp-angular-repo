@@ -1,6 +1,7 @@
 import { Category } from "./category.model";
 import { Company } from "./company.model";
 import { User } from "../log-in/user.model";
+import { Data } from "@angular/router";
 
 export class Question {
    questionId!:number;
@@ -14,6 +15,7 @@ export class Question {
    kind?: number; 
    title? :string 
    code?: string;
+   dateUpload!:Date;
 }
 
 
