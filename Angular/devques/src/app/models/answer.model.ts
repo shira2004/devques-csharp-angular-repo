@@ -10,6 +10,7 @@ export class Answer{
     categoryId!:number
     code?:string
     image?:string
+    score!:number
 }
 
 
