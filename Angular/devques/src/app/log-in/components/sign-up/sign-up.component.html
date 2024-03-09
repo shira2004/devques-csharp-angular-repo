@@ -51,6 +51,10 @@
         </mat-error>
       </mat-form-field>
     </div>
+    <label for="fileInput"  style="cursor: pointer;">
+      <img src="../../../../assets/pic/image.png" alt>
+    </label>
+    <input id="fileInput" type="file" style="display: none;" (change)="onFileSelected($event)"  accept="image/*" />
 
     <br />
     <button mat-raised-button class="submit" (click)="submit()" [disabled]="SignUpForm.invalid">Sign Up</button>
