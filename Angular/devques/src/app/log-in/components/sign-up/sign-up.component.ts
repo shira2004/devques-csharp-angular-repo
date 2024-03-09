@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog'
+import { handleFileSelected } from '../../../helper';
 
 
 
@@ -36,6 +37,9 @@ import { MatDialog } from '@angular/material/dialog'
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent implements OnInit {
+  SignUpForm!: FormGroup;
+  hide = true;
+
   constructor(private router: Router, private _userService: UserService, public dialog: MatDialog) { }
   ngOnInit(): void {
     this.SignUpForm = new FormGroup({
@@ -50,6 +54,8 @@ export class SignUpComponent implements OnInit {
   }
 
   APP_ROUTES = APP_ROUTES
+  selectedImage: File | null = null;
+  base64Image: string | null = null;
   dialogData1 = {
     text1: 'Welcome!',
     text2: 'Your account has been successfully added.',
@@ -77,19 +83,21 @@ export class SignUpComponent implements OnInit {
       },
     },
   };
-  SignUpForm!: FormGroup;
-  hide = true;
   submit() {
     console.log('Form Object:', this.SignUpForm.value);
-    const userToAdd: User = this.SignUpForm.value;
-    console.log(userToAdd);
+    const userToAdd: User = {
+      ...this.SignUpForm.value,
+      image: this.base64Image || '', 
+    };
 
     this._userService.addUserByServer(userToAdd).subscribe({
       next: (res) => {
         console.log(res);
         localStorage.setItem('user', JSON.stringify(res))
         this.dialog.open(DialogComponent, {
-          data: this.dialogData1
+          data: this.dialogData1,
+          height: '500px',
+          width: '350px',
         });
       },
       error: (err) => {
@@ -103,5 +111,13 @@ export class SignUpComponent implements OnInit {
   GoToSignIn() {
     console.log('go to sign in ');
     this.router.navigate([APP_ROUTES.SIGN_IN]);
+  }
+
+  onFileSelected(event: any): void {
+    handleFileSelected(event, (base64Image) => {
+      this.selectedImage = event.target.files[0];
+      this.base64Image = base64Image;
+     
+    });
   }
 }  
