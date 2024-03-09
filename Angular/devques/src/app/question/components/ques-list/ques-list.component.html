@@ -1,46 +1,37 @@
-<h1 style="margin-top: 10px; color: #555; ">Techy Quest</h1>
-<h3 style="margin-top: 10px; color: #555;">Rate the difficulty to receive
+<h1 class="page-title">Techy Quest</h1>
+<h3 class="sub-title">Rate the difficulty to receive
   personalized challenges and improve the platform for a better learning
   experience. 🌐🚀</h3>
 <div class="card-container">
   <div *ngFor="let ques of quesList" class="card-item">
-    <mat-card style="margin-top: 15px; width: 768px;">
-      <div class="outer-card"
-        style="background-color: #e4e0cedd; padding: 30px; box-sizing: border-box; position: relative; border-radius: 15px;">
-        <div class="inner-card"
-          style="background-color: white; padding: 15px; border-radius: 15px; margin-right: 30px;">
+    <mat-card class="custom-card">
+      <div class="outer-card">
+        <div class="inner-card">
           <mat-card-content>
-            <mat-card-subtitle
-              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">            
-              <img *ngIf="ques?.user?.image" mat-card-img   class="avatar-image" [src]="'data:/images/png;base64,' + ques?.user?.image" alt="picture">
+            <mat-card-subtitle style ="text-align: left;">
+              <img *ngIf="ques?.user?.image" mat-card-img class="avatar-image" [src]="'data:/images/png;base64,' + ques?.user?.image" alt="picture">
               {{ques.user?.firstName}} {{ques.user?.lastName}}
+              <br>
+              {{ques.dateUpload | date }}
             </mat-card-subtitle>
 
-            <h2 mat-card-title
-              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{ques.title}}</h2>
-              <h3 mat-card-title
-              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{ques.content}}</h3>
-            <p mat-card-subtitle
-              style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">
-              <!-- this is the company -->
+            <h2 mat-card-title>{{ques.title}}</h2>
+            <h3 mat-card-title>{{ques.content}}</h3>
+            <p mat-card-subtitle>
               {{ques.company?.companyName}}</p>
           </mat-card-content>
-          <!-- img from server  -->
           <img *ngIf="ques.image" class="custom-image" [src]="'data:image/png;base64,' + ques.image" alt="picture">
-
-
         </div>
-        <div style="padding-top: 5px;">
-          <button mat-button>
+        <div class="difficulty-buttons">
+          <button mat-button (click)="setDifficulty(ques, 1)">
             easy
             <img src="../../../../assets/pic/easy.png" alt>
           </button>
-          <button mat-button>
+          <button mat-button (click)="setDifficulty(ques,2)">
             medium
             <img src="../../../../assets/pic/medium.png" alt>
-
           </button>
-          <button mat-button>
+          <button mat-button (click)="setDifficulty(ques,3)">
             hard
             <img src="../../../../assets/pic/hard.png" alt>
           </button>

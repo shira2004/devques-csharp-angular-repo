@@ -1,32 +1,61 @@
-* {
+.page-title, .sub-title {
+  text-align: center;
+  margin-top: 10px;
+  color: #555;
   font-family: 'Poppins', 'Helvetica Neue', sans-serif;
 }
+
 .card-container {
   text-align: center;
-  
 }
 
 .card-item {
   display: inline-block;
-  margin: 10px; 
+  margin: 10px;
 }
-h1 , h3{
-  text-align: center;
 
-}
 .custom-image {
-  max-width: 100%;  
+  max-width: 100%;
   max-height: 300px;
-  width: auto;      
-  height: auto;     
-  display: block;   
-  margin: auto;     
+  width: auto;
+  height: auto;
+  display: block;
+  margin: auto;
 }
+
 .avatar-image {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  object-fit: cover; /* Ensures the image covers the entire container while maintaining its aspect ratio */
-  border: 2px solid #fff; /* Optional: Add a border to the avatar */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.custom-card {
+  margin-top: 15px;
+  width: 768px;
+}
+
+.outer-card {
+  background-color: #e4e0cedd;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 15px;
+}
+
+.inner-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 15px;
+  margin-right: 30px;
+}
+
+.difficulty-buttons button {
+  margin-top: 5px;
+}
+
+.difficulty-buttons button img {
+  margin-left: 5px;
 }
