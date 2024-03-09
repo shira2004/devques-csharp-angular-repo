@@ -4,22 +4,23 @@
 
 namespace CodeFirst.Migrations
 {
-    public partial class addtitletoquestion : Migration
+    public partial class addlevel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Title",
-                table: "questions",
-                type: "nvarchar(max)",
-                nullable: true);
+            migrationBuilder.AddColumn<int>(
+                name: "level",
+                table: "QuestionForUser",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Title",
-                table: "questions");
+                name: "level",
+                table: "QuestionForUser");
         }
     }
 }

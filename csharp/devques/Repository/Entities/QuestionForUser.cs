@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace Repository.Entities
 {
+    public enum QuestionLevel
+    {
+        Level1 = 1,
+        Level2 = 2,
+        Level3 = 3
+    }
     public class QuestionForUser
     {
         [Key]
@@ -20,6 +26,7 @@ namespace Repository.Entities
         [ForeignKey("QuestionId")]
         public virtual Question Question { get; set; }
         public Kind kind { get; set; }
-        //public int Level { get; set; }
+
+      public QuestionLevel level { get; set; }
     }
 }

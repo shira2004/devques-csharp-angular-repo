@@ -42,5 +42,6 @@ namespace Common.Dto
         public string? code { get; set; }
         public string? Image { get; set; }
         public Kind Kind { get; set; }
+        public DateTime DateUpload { get; set; }
     }
 }

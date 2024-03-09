@@ -1,31 +1,25 @@
 ﻿using Common.Dto;
 using Microsoft.Extensions.DependencyInjection;
-using Repository;
 using Service.Interface;
 using Service.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Service;
+using Repository;
 
-namespace Service
+public static class ExtensionServices
 {
-    public static  class ExtensionServices
+    public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddRepository();
+        services.AddScoped<IService<UserDto>, UserService>();
+        services.AddScoped<IService<CategoryDto>, CategoryService>();
+        services.AddScoped<IService<CompanyDto>, CompanyService>();
+        services.AddScoped<IAnswer<AnswerDto>, AnswerService>();
+        services.AddScoped<IQuestion<QuestionDto>, QuestionService>();
+        services.AddScoped<IService<QuestionForUserDto>, QuestionForUserService>();
+        services.AddScoped<IService<UserRatingsDto>, UserRatingsService>();
 
-        public static IServiceCollection AddServises(this IServiceCollection Services)
-        {
-            Services.AddRepository();
-            Services.AddScoped<IService<UserDto>, UserService>();
-            Services.AddScoped<IService<CategoryDto>, CategoryService>();
-            Services.AddScoped<IService<CompanyDto>, CompanyService>();
-            Services.AddScoped<IService<AnswerDto>, AnswerService>();
-            Services.AddScoped<IQuestion<QuestionDto>, QuestionService>();
-            Services.AddScoped<ImageUploadService>();
-            Services.AddAutoMapper(typeof(MapperProfile));
-            return Services;
-        } 
+        services.AddScoped<ImageUploadService>();
+        services.AddAutoMapper(typeof(MapperProfile));
+        return services;
     }
 }

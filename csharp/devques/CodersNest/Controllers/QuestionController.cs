@@ -87,8 +87,9 @@ namespace DevQues.Controllers
         public void Delete(int id)
         {
         }
-        [HttpPost("category")]
-        public List<QuestionDto> GetByCategory([FromBody] int[] categoryIds)
+
+        [HttpGet("category")]
+        public List<QuestionDto> GetByCategory([FromQuery] int[] categoryIds)
         {
             if (categoryIds == null || categoryIds.Length == 0)
             {
@@ -107,7 +108,7 @@ namespace DevQues.Controllers
             return questionsInCategories;
         }
 
-       
+
 
     }
 }

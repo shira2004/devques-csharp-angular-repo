@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeFirst.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240301123613_add-code-to-question")]
-    partial class addcodetoquestion
+    [Migration("20240307071225_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,9 @@ namespace CodeFirst.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -158,13 +161,13 @@ namespace CodeFirst.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdQues"), 1L, 1);
 
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
                     b.Property<long>("QuestionId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("kind")
                         .HasColumnType("int");
 
                     b.HasKey("IdQues");
@@ -206,6 +209,25 @@ namespace CodeFirst.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("user");
+                });
+
+            modelBuilder.Entity("Repository.Entities.UserRatings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AnsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRatings");
                 });
 
             modelBuilder.Entity("Repository.Entities.Answer", b =>

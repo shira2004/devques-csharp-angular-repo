@@ -20,6 +20,10 @@ namespace Repository
             services.AddScoped<IRepository<Question>, QuestionRepository>();
             services.AddScoped<IRepository<Answer>, AnswerRepository>();
 
+            services.AddScoped<IRepository<QuestionForUser>, QuestionForUserRepository>();
+
+            services.AddScoped<IRepository<UserRatings>, UserRatingsRepository>();
+
             return services;
         }
     }

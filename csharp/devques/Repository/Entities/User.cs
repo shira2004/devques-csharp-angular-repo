@@ -19,6 +19,6 @@ namespace Repository.Entities
 
 
         public virtual ICollection<Answer> Answers { get; set; }
-     //   public virtual ICollection<Question> GivenQuestions { get; set; }
+       // public virtual ICollection<UserRating> UserRatings { get; set; }
     }
 }

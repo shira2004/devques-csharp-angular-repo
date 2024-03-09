@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { APP_ROUTES } from '../../../app_routes';
 import { DialogComponent } from '../../../home-components/dialog/dialog.component';
 import { Answer } from '../../../models/answer.model';
+import { handleFileSelected } from '../../../helper';
 
 
 
@@ -135,6 +136,7 @@ export class AddQuesComponent implements OnInit {
       kind: this.secondFormGroup.get('selectedOption')!.value || 0,
       title: this.secondFormGroup.get('titleCtrl')!.value || '',
       code: this.secondFormGroup.get('codeCtrl')?.value || '',
+      dateUpload:new Date() ,
     };
     console.log(this.ques);
     // console.log(this.ques.image);
@@ -146,7 +148,9 @@ export class AddQuesComponent implements OnInit {
           console.log(questionRes);
           this.questId = questionRes.questionId;
           this.dialog.open(DialogComponent, {
-            data: this.dialogData1
+            data: this.dialogData1,
+            height: '500px',
+            width: '350px',
           });
 
           this.ans = {
@@ -156,6 +160,7 @@ export class AddQuesComponent implements OnInit {
             rating: 0,
             content: this.secondFormGroup.get('answerCtrl')?.value || '',
             categoryId: parseInt(this.firstFormGroup.get('categoryCtrl')?.value || '0'),
+            score:0,
 
           };
           console.log(this.ans);
@@ -173,6 +178,7 @@ export class AddQuesComponent implements OnInit {
   }
 
   createAnswer() {
+    if(this.ans.content!= ''){
     this._ansService.createAnswer(this.ans)
       .subscribe({
         next: (answerRes) => {
@@ -186,16 +192,15 @@ export class AddQuesComponent implements OnInit {
 
         }
       });
+    }
+   
   }
   onFileSelected(event: any): void {
-    this.selectedImage = event.target.files[0];
-    if (this.selectedImage) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.base64Image = e.target?.result as string;
-      };
-      reader.readAsDataURL(this.selectedImage);
-    }
+    handleFileSelected(event, (base64Image) => {
+      this.selectedImage = event.target.files[0];
+      this.base64Image = base64Image;
+     
+    });
   }
 
   toggleCodeField() {

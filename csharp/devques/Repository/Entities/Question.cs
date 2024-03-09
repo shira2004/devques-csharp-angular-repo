@@ -56,6 +56,7 @@ namespace Repository.Entities
 
         public string? Image { get; set; }
         public string? code { get; set; }
+       
         //public virtual ICollection<User> Users { get; set; }
     }
 }

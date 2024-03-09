@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddDbContext<IContext,DataContext>();
 //builder.Services.AddAutoMapper(typeof(m))
 
-builder.Services.AddServises() ;
+builder.Services.AddServices() ;
 builder.Services.AddDbContext<IContext,DataContext > ();
 
 

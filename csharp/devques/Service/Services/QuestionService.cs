@@ -31,6 +31,20 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
+        public string EncodeImageToBase64(string imagePath)
+        {
+            try
+            {
+                byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+                return Convert.ToBase64String(imageBytes);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error encoding image: {ex.Message}");
+                return null;
+            }
+        }
+
         public List<QuestionDto> GetAll()
         {
             return mapper.Map<List<QuestionDto>>(repository.GetAll());
@@ -49,20 +63,6 @@ namespace Service.Services
         public void Update(int id, QuestionDto entity)
         {
             repository.Update(id, mapper.Map<Question>(entity));
-        }
-
-        public string EncodeImageToBase64(string imagePath)
-        {
-            try
-            {
-                byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
-                return Convert.ToBase64String(imageBytes);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error encoding image: {ex.Message}");
-                return null;
-            }
         }
     }
 }

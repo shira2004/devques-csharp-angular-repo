@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class AnswerService : IService<AnswerDto>
+    public class AnswerService : IAnswer<AnswerDto>
     {
         private readonly IRepository<Answer> repository;
         private readonly IMapper mapper;
@@ -31,9 +31,28 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
+        public string EncodeImageToBase64(string imagePath)
+        {
+            try
+            {
+                byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+                return Convert.ToBase64String(imageBytes);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error encoding image: {ex.Message}");
+                return null;
+            }
+        }
+
         public List<AnswerDto> GetAll()
         {
             return mapper.Map<List<AnswerDto>>(repository.GetAll());
+        }
+
+        public List<AnswerDto> GetByCategory(int[] categoryIds)
+        {
+            return mapper.Map<List<AnswerDto>>(repository.GetAll().Where(q => categoryIds.Contains(q.CategoryId)));
         }
 
         public AnswerDto GetById(int id)

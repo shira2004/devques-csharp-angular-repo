@@ -49,6 +49,9 @@ namespace CodeFirst.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -156,13 +159,16 @@ namespace CodeFirst.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdQues"), 1L, 1);
 
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
                     b.Property<long>("QuestionId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("kind")
+                        .HasColumnType("int");
+
+                    b.Property<int>("level")
                         .HasColumnType("int");
 
                     b.HasKey("IdQues");
@@ -171,7 +177,7 @@ namespace CodeFirst.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("questionForUsers");
+                    b.ToTable("QuestionForUser");
                 });
 
             modelBuilder.Entity("Repository.Entities.User", b =>
@@ -204,6 +210,29 @@ namespace CodeFirst.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("user");
+                });
+
+            modelBuilder.Entity("Repository.Entities.UserRatings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AnsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnsId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("UserRatings");
                 });
 
             modelBuilder.Entity("Repository.Entities.Answer", b =>
@@ -267,6 +296,25 @@ namespace CodeFirst.Migrations
                         .IsRequired();
 
                     b.Navigation("Question");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Repository.Entities.UserRatings", b =>
+                {
+                    b.HasOne("Repository.Entities.Answer", "Answer")
+                        .WithMany()
+                        .HasForeignKey("AnsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Repository.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Answer");
 
                     b.Navigation("User");
                 });

@@ -22,5 +22,6 @@ namespace Common.Dto
         public int categoryId { get; set; }
         public string? Image { get; set; }
 
+        public int Score { get; set; }
     }
 }

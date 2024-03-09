@@ -11,27 +11,19 @@ namespace DevQues.Controllers
     [ApiController]
     public class AnswerController : ControllerBase
     {
-        private readonly IService<AnswerDto> _service;
+        private readonly IAnswer<AnswerDto> _service;
         private readonly ImageUploadService _imageUploadService;
-
-        public AnswerController(ImageUploadService imageUploadService ,IService<AnswerDto> service)
+        public AnswerController(ImageUploadService imageUploadService, IAnswer<AnswerDto> service)
         {
             _imageUploadService = imageUploadService;
             _service = service;
         }
+
         // GET: api/<AnswerController>
         [HttpGet]
         public List<AnswerDto> Get()
         {
             List<AnswerDto> answers = _service.GetAll();
-
-         //  foreach (var answer in answers)
-         //  {
-         //      if (!string.IsNullOrEmpty(answer.Image))
-         //      {
-         //          answer.Image = _imageUploadService.EncodeImageToBase64(answer.Image);
-         //      }
-         //  }
 
             return answers;
         }
@@ -108,18 +100,39 @@ namespace DevQues.Controllers
             }
         }
 
-     [HttpPost("category")]
-     public List<AnswerDto> GetByCategory([FromBody] int[] categoryIds)
-     {
-         if (categoryIds == null || categoryIds.Length == 0)
-         {
-             return _service.GetAll();
-         }
-     
-         var answersInCategories =_service.GetAll().Where(a =>categoryIds.Contains(a.categoryId)).ToList();
-            
+   //[HttpPost("category")]
+   //public List<AnswerDto> GetByCategory([FromBody] int[] categoryIds)
+   //{
+   //    if (categoryIds == null || categoryIds.Length == 0)
+   //    {
+   //        return _service.GetAll();
+   //    }
+   //
+   //    var answersInCategories =_service.GetAll().Where(a =>categoryIds.Contains(a.categoryId)).ToList();
+   //       
+   //       return answersInCategories;
+   //}
+   //
+
+        [HttpGet("category")]
+        public List<AnswerDto> GetByCategory([FromQuery] int[] categoryIds)
+        {
+            if (categoryIds == null || categoryIds.Length == 0)
+            {
+                return _service.GetAll();
+            }
+
+            var answersInCategories = _service.GetByCategory(categoryIds);
+            foreach (var answer in answersInCategories)
+            {
+                if (!string.IsNullOrEmpty(answer.Image))
+                {
+                    answer.Image = _service.EncodeImageToBase64(answer.Image);
+                }
+            }
+
             return answersInCategories;
-     }
-      
+        }
+
     }
 }

@@ -16,6 +16,9 @@ namespace Repository.Interface
         public DbSet<Category> categories { get; set; }
         public DbSet<Company> companies { get; set; }
         public DbSet<Question> questions { get; set; }
+        public DbSet<UserRatings> UserRatings { get; set; }
+
+        public DbSet<QuestionForUser> userQu { get; set; }
         object Response { get; set; }
 
         public void save();

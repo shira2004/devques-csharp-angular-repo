@@ -5,7 +5,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { AddQuesComponent } from './components/add-ques/add-ques.component';
 import { RecommendedQuestionsComponent } from './components/recommended-questions/recommended-questions.component';
 import { QuesListComponent } from './components/ques-list/ques-list.component';
-import { CategorySelctionComponent } from './components/category-selction/category-selction.component';
+import { CategoryselectionComponent } from './components/category-selection/category-selection.component';
 import { userGuard } from '../user.guard';
 
 const questionRoute: Routes = [
@@ -14,7 +14,7 @@ const questionRoute: Routes = [
   { path: "ques-details/:id", component: DetailsComponent },
   { path: 'add-ques', component: AddQuesComponent, canActivate: [userGuard] },
   { path: 'recommended-questions', component: RecommendedQuestionsComponent },
-  { path: 'category-Selections', component: CategorySelctionComponent }
+  { path: 'category-Selections', component: CategoryselectionComponent }
 ]
 @NgModule({
   declarations: [],
