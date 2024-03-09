@@ -1,57 +1,68 @@
-
 <link rel="stylesheet"
   href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-dark.min.css" />
 <script
   src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
-<mat-card style="max-width: 900px; margin: 0 auto;">
+<mat-card class="main-card">
   <mat-card-header>
-    <mat-card-subtitle
-      style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">
+    <div style="margin-left: 50vw;">
+      <button  (click)="prev()" extended  color="black" style="background-color:  #FBE374;">
+        <span class="material-symbols-outlined">
+          arrow_right_alt
+        </span>
+       
+      </button>
+    </div>
+
+    <mat-card-subtitle class="user-info">
       <img *ngIf="question?.user?.image"
         mat-card-img
         class="avatar-image"
         [src]="'data:/images/png;base64,' + question?.user?.image"
         alt="picture">
-      {{question?.user?.firstName}} {{question?.user?.lastName}}</mat-card-subtitle>
+      {{question?.user?.firstName}} {{question?.user?.lastName}}
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-
-    <p style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{question?.content}}</p>
-    <!-- <pre><code class="code-highlight" [innerText]="question?.code"></code></pre> -->
-
-    <pre>
-      <code class="code-highlight" appHighlight [innerText]="question?.code"></code>
-    </pre>
-
+    <p class="content-text">{{question?.content}}</p>
+    <pre><code class="code-highlight" [innerText]="question?.code"></code></pre>
     <img *ngIf="question?.image" mat-card-img class="custom-image"
       [src]="'data:/images/png;base64,' +question?.image" alt="picture">
-
   </mat-card-content>
   <br />
-  <h3
-    style="text-align: center; font-family: 'Poppins', 'Helvetica Neue', sans-serif;">
+  <h3 class="response-title">
     <img src="../../../../assets/pic/solution.png" alt>
     <br />
     Responses and Comments
   </h3>
   <mat-card-content>
     <div *ngFor="let ans of filteredAnswers" class="card-item">
-      <mat-card style="max-width: 900px; margin: 0 auto; margin-bottom: 20px;;">
+      <mat-card class="response-card">
         <mat-card-content>
-          <mat-card-subtitle>
+          <mat-card-subtitle class="user-info">
             <img *ngIf="ans?.user?.image" mat-card-img class="avatar-image"
               [src]="'data:/images/png;base64,' + ans?.user?.image"
               alt="picture">
-            {{ ans.user?.firstName }} </mat-card-subtitle>
-          <span class="material-symbols-outlined">
-            thumb_down
-          </span>
-          <p style="font-family: 'Poppins', 'Helvetica Neue', sans-serif;">{{
-            ans.content }}</p>
-          <pre><code class="code-highlight" [innerHTML]="ans.code"></code></pre>
+            {{ ans.user?.firstName }}
+          </mat-card-subtitle>
+          <div class="score-container">
+            <span class="material-symbols-outlined">
+              thumb_down
+            </span>
+            <p>{{ans.score}}</p>
+            <span class="material-symbols-outlined">
+              thumb_up
+            </span>
+          </div>
+          <p class="content-text">{{ ans.content }}</p>
+          <div *ngIf ="ans.code">
+          <button (click)="copyText(ans.code!)" value="click to copy"><span
+              class="material-symbols-outlined">
+              content_copy
+            </span></button>
+          </div>
+          <pre><code class="code-highlight" appHighlight [innerHTML]="ans.code"></code></pre>
           <img *ngIf="ans?.image" mat-card-img class="custom-image"
             [src]="'data:/images/png;base64,' +ans?.image" alt="picture">
-
         </mat-card-content>
       </mat-card>
     </div>
@@ -72,23 +83,19 @@
             style="background-color: #000; color:  #fff;"></textarea>
         </mat-form-field>
       </div>
-
-      <div style="display: flex; align-items: center;">
+      <div class="comment-buttons">
         <button mat-button (click)="toggleCodeField()"
           style="margin-right: 10px;">
           <img src="../../../../assets/pic/code.png" alt>
         </button>
-
         <label for="fileInput" style="cursor: pointer;">
           <img src="../../../../assets/pic/image.png" alt>
         </label>
         <input id="fileInput" type="file" style="display: none;"
           (change)="onFileSelected($event)" accept="image/*" />
-
         <button mat-button (click)="onSubmit()">submit Comment</button>
       </div>
     </div>
     <br />
   </mat-card-actions>
-</mat-card> <img src="../../../../assets/pic/coders.png" alt="code"
-  style="width: 100%; height: auto;">
+</mat-card>

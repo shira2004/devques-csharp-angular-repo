@@ -1,38 +1,67 @@
-
 @import 'highlight.js/styles/monokai-sublime.css';
-/* 
-* {
-  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
-} */
 
-.center-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main-card {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.code-container {
+.user-info {
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
+
+.avatar-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.custom-image {
+  max-width: 100%;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+.content-text {
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
+
+.code-highlight {
   max-width: 100%;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
   overflow-x: auto;
- 
-}
-.avatar-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover; /* Ensures the image covers the entire container while maintaining its aspect ratio */
-  border: 2px solid #fff; /* Optional: Add a border to the avatar */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
 }
 
-.custom-image {
-  max-width: 100%;  
-  max-height: 300px;
-  width: auto;      
-  height: auto;     
-  display: block;   
-  margin: auto;     
+.response-title {
+  text-align: center;
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
 }
+
+.response-card {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+}
+
+.material-symbols-outlined {
+  display: inline-block;
+}
+
+.comment-buttons {
+  display: flex;
+  align-items: center;
+}
+
+
