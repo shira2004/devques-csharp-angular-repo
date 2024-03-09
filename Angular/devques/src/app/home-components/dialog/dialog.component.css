@@ -1,22 +1,29 @@
+
+
+
 .centered-content {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
 }
 
 .image-container {
-  /* padding: 40px;  */
-  text-align: center;
+  margin-top: 10px; 
 }
 
-
-.image-container img {
-  max-width: 100%; 
-  height: auto; 
+.custom-padding {
+  padding-left: 10px;
 }
 
-::ng-deep .mat-dialog-content {
-  overflow: hidden;
+.dialog-container {
+  margin: 10px; 
+}
+
+.button-container {
+  margin-top: 10px; 
+}
+
+.custom-padding {
+  padding: 10px;
 }

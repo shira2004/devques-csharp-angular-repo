@@ -1,11 +1,13 @@
-<h2 mat-dialog-title  class="centered-content">{{ data.text1 }}</h2>
-<div mat-dialog-content class="centered-content">
-  <p>{{ data.text2 }}</p>
-  <div class="image-container">
-    <img *ngIf="data.imageSrc" [src]="data.imageSrc" alt="successfully added" />
+<div class="dialog-container">
+  <h2 mat-dialog-title class="centered-content">{{ data.text1 }}</h2>
+  <div mat-dialog-content class="centered-content">
+    <p>{{ data.text2 }}</p>
+    <div class="image-container">
+      <img *ngIf="data.imageSrc" [src]="data.imageSrc" alt="successfully added" />
+    </div>
   </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button color="primary" (click)="onClose(); data.button.onClick()">{{ data.button.label }}</button>
-  <button mat-button (click)="onClose()">Close</button>
+  <div mat-dialog-actions class="button-container">
+    <button mat-button color="primary" (click)="onClose(); data.button.onClick()" class="custom-padding">{{ data.button.label }}</button>
+    <button mat-button  color="primary" (click)="onClose()">Close</button>
+  </div>
 </div>
