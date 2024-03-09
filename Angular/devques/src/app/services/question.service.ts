@@ -2,54 +2,48 @@
 import { Injectable } from '@angular/core';
 import { Question } from '../models/question.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { questionForUser } from '../models/questionForUser';
 
-// import  shuffle from 'array-shuffle';
-import { map } from 'rxjs/operators';
-
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
+  public isArrow!: boolean;
   createQuestionWithImage(formData: FormData) {
     throw new Error('Method not implemented.');
   }
   private selectedQuestionSubject = new BehaviorSubject<Question | null>(null);
   selectedQuestion$ = this.selectedQuestionSubject.asObservable();
 
-  constructor(private _httpClient: HttpClient) { }
+  public currentQuestions: Question[] = []
 
-  getAllQuestionByServer(): Observable<Question[]> {
-    console.log('getAllQuestionByServer');
-    return this._httpClient.get<Question[]>('https://localhost:7068/api/Question');
-  }
+  constructor(private _httpClient: HttpClient) { }
 
   setSelectedQuestion(question: Question) {
     this.selectedQuestionSubject.next(question);
   }
 
 
-  getQuestionsByCategoryIds(categoryIds: number[]): Observable<Question[]> {
-    console.log('getQuestionsByCategoryIds', categoryIds);
-  
-    return this._httpClient.post<Question[]>('https://localhost:7068/api/Question/category', categoryIds);
-  }
+ getQuestionsByCategoryIds(categoryIds: number[]): Observable<Question[]> {
+  console.log('getQuestionsByCategoryIds', categoryIds);
+  this.isArrow = false;
+  const params = new HttpParams().set('categoryIds', categoryIds.join(','));
 
-  getRandQuestionsByCategoryIds(categoryIds: number[]): Observable<Question[]> {
-    return this.getQuestionsByCategoryIds(categoryIds).pipe(
-      // map(questions => shuffle(questions).slice(0, 10))
-    );
-  }
-  // addQuestionWithDrag(ques: Question): Observable<Question> {
-  //   return this._httpClient.post<Question>('https://localhost:7068/api/Question', ques);
-  // }
+  return this._httpClient.get<Question[]>('https://localhost:7068/api/Question/category', { params });
+}
 
-  
+
+
+
   createQuestion(ques: Question): Observable<Question> {
     return this._httpClient.post<Question>('https://localhost:7068/api/Question', ques);
   }
 
-  // getQuestByIdFromServer(id: number): Observable<Question> {
-  //   return this._httpClient.get<Question>(`blablabla/${id}`);
-  // }
+  dragQuestLevel(quesForUser: questionForUser): Observable<questionForUser> {
+    return this._httpClient.post<questionForUser>('https://localhost:7068/api/QuestionForUser', quesForUser);
+  }
+
+
+
 }

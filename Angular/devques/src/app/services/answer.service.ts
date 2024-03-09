@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable, tap } from 'rxjs';
 
@@ -21,11 +21,14 @@ export class AnswerService {
   getAnswersByCategoryIds(categoryIds: number[]): Observable<Answer[]> {
     console.log('getAnswersByCategoryIds', categoryIds);
   
-    return this._httpClient.post<Answer[]>('https://localhost:7068/api/Answer/category', categoryIds)
+    const params = new HttpParams().set('categoryIds', categoryIds.join(','));
+    return this._httpClient.get<Answer[]>('https://localhost:7068/api/Answer/category', {params})
       .pipe(
         tap(answers => this.answerList = answers) 
       );
   }
+
+
 
   getStoredAnswers(): Answer[] {
     return this.answerList; 
